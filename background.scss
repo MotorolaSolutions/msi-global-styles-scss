@@ -12,6 +12,18 @@
 	background-color: $bg-dark-tertiary;
 }
 
+%bg-dark-premium-primary {
+	background-color: $bg-dark-premium-primary;
+}
+
+%bg-dark-premium-secondary {
+	background-color: $bg-dark-premium-secondary;
+}
+
+%bg-dark-premium-tertiary {
+	background-color: $bg-dark-premium-tertiary;
+}
+
 %bg-light-primary {
 	background-color: $bg-light-primary;
 }
@@ -40,6 +52,20 @@
 	&.bg-tertiary,
 	.bg-tertiary {
 		@extend %bg-dark-tertiary;
+	}
+	&.bg-premium-primary,
+	.bg-premium-primary {
+		@extend %bg-dark-premium-primary;
+	}
+
+	&.bg-premium-secondary,
+	.bg-premium-secondary {
+		@extend %bg-dark-premium-secondary;
+	}
+
+	&.bg-premium-tertiary,
+	.bg-premium-tertiary {
+		@extend %bg-dark-premium-tertiary;
 	}
 }
 

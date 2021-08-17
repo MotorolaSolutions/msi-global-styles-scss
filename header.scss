@@ -2383,7 +2383,7 @@ body.header-menu-open {
 	left: 0;
 	right: 0;
 	background-color: $white;
-	opacity: 0;
+	visibility: hidden;
 	transform: translateY(-101%) translateZ(0);
 	transition: none;
 	z-index: -1;
@@ -2395,7 +2395,7 @@ body.header-menu-open {
 	pointer-events: none;
 
 	&.header-show {
-		opacity: 1;
+		visibility: visible;
 		transform: none;
 		transition: transform $transition-duration-medium linear;
 		box-shadow: map-get(map-get($shadows, xs), light);

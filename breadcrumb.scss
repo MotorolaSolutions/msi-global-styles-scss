@@ -10,7 +10,7 @@
 	height: 48px;
 	align-items: center;
 
-	@include media-breakpoint-down(sm) {
+	@include media-breakpoint-down(md) {
 		&:not(:nth-last-child(2)) {
 			display: none;
 		}
