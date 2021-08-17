@@ -1,0 +1,332 @@
+@import '../tools/size';
+
+// Color system
+$primary: $dark-blue;
+
+// Spacing
+$spacer: 16px;
+
+// Body
+//
+// Settings for the `<body>` element.
+$body-bg: $bg-light-primary;
+$body-color: $black-60;
+
+// Links
+//
+// Style anchor elements.
+$link-color: $dark-blue;
+$link-decoration: none;
+$link-hover-color: $link-color;
+$link-hover-decoration: none;
+
+// Paragraphs
+//
+// Style p element.
+
+$paragraph-margin-bottom: $spacer * 1.5;
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-gutter-width: 30px;
+
+// Components
+//
+// Define common padding and border radius sizes and more.
+
+$caret-width: remsize(24);
+$caret-spacing: remsize(8);
+
+$transition-base: all $transition-duration-medium ease-in-out;
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif: Arial, sans-serif;
+
+$h1-font-size: remsize(map-get(map-get($type-h1, 'xs'), 'size'));
+$h2-font-size: remsize(map-get(map-get($type-h2, 'xs'), 'size'));
+$h3-font-size: remsize(map-get(map-get($type-h3, 'xs'), 'size'));
+$h4-font-size: remsize(map-get(map-get($type-h4, 'xs'), 'size'));
+$h5-font-size: remsize(map-get(map-get($type-h5, 'xs'), 'size'));
+$h6-font-size: remsize(map-get(map-get($type-h6, 'xs'), 'size'));
+
+$headings-margin-bottom: $spacer * 1.5;
+$headings-color: $black-strong;
+$headings-font-weight: normal;
+
+$lead-font-size: remsize(map-get(map-get($type-p-lg, 'xs'), 'size'));
+$lead-font-weight: normal;
+
+$small-font-size: remsize(map-get(map-get($type-p-sm, 'xs'), 'size'));
+
+$text-muted: $black-25;
+
+$hr-border-color: $body-color;
+
+$mark-padding: 0.2em 0;
+
+$mark-bg: adjust-color($warning, $alpha: -0.6);
+
+$hr-margin-y: $spacer * 2.5;
+
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all table variations.
+
+$table-color: inherit;
+
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+
+$input-btn-focus-width: 2px;
+$input-btn-focus-color: $link-color-inverted;
+$input-btn-focus-box-shadow: none;
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background, and border color.
+
+$btn-padding-y: 7px;
+$btn-padding-x: 23px;
+$btn-font-size: remsize(13);
+$btn-line-height: remsize(24);
+$btn-white-space: nowrap;
+
+$btn-padding-y-sm: 7px;
+$btn-padding-x-sm: 19px;
+$btn-font-size-sm: remsize(12);
+$btn-line-height-sm: remsize(16);
+
+$btn-padding-y-lg: 11px;
+$btn-padding-x-lg: 31px;
+$btn-font-size-lg: remsize(14);
+$btn-line-height-lg: remsize(24);
+
+$btn-focus-box-shadow: none;
+$btn-disabled-opacity: 1;
+
+$btn-border-radius: remsize(21);
+$btn-border-radius-lg: remsize(25);
+$btn-border-radius-sm: remsize(19);
+
+// Forms
+
+$label-margin-bottom: $spacer * 0.5;
+
+$input-padding-y: remsize(10);
+$input-padding-x: remsize(16);
+$input-font-size: remsize(16);
+$input-line-height: 1.625;
+
+$input-padding-y-sm: remsize(6);
+$input-font-size-sm: remsize(12);
+$input-line-height-sm: 1.5;
+
+$input-padding-y-lg: remsize(10);
+$input-font-size-lg: remsize(16);
+$input-line-height-lg: 1.625;
+
+$input-disabled-bg: $white;
+
+$input-color: $black-strong;
+$input-border-color: $black-25;
+$input-box-shadow: none;
+
+$input-border-radius: 0;
+$input-border-radius-lg: 0;
+$input-border-radius-sm: 0;
+
+$input-placeholder-color: $black-muted;
+
+$input-height: remsize(48);
+$input-height-sm: remsize(32);
+$input-height-lg: remsize(48);
+
+$form-text-margin-top: 6px;
+
+// Form validation
+
+$form-feedback-margin-top: $form-text-margin-top;
+$form-feedback-valid-color: $success-dark;
+$form-feedback-invalid-color: $error-dark;
+
+//Checkbox/radio
+
+$form-check-input-gutter: remsize(36); // changing to pixels breaks build process
+$form-check-input-margin-y: 12px;
+$form-check-input-margin-x: 6px;
+$form-check-inline-input-margin-x: 12px;
+
+// Navs
+
+$nav-link-padding-x: $grid-gutter-width / 2;
+$nav-tabs-border-color: transparent;
+$nav-tabs-border-width: 1px;
+$nav-tabs-border-radius: 0;
+$nav-tabs-link-hover-border-color: none;
+$nav-tabs-link-active-color: $text-black;
+$nav-tabs-link-active-border-color: $dark-blue;
+$nav-tabs-link-active-bg: transparent;
+
+// Dropdowns
+
+$dropdown-min-width: 160px;
+$dropdown-padding-y: 0;
+$dropdown-spacer: 4px;
+$dropdown-font-size: $input-font-size;
+$dropdown-color: $black-normal;
+$dropdown-border-radius: 0;
+$dropdown-divider-margin-y: 0;
+$dropdown-box-shadow: 0 30px 40px 0 rgba(35, 35, 35, 0.3);
+$dropdown-link-hover-bg: $black-05;
+$dropdown-link-disabled-color: $light-black;
+$dropdown-link-active-color: $light-black;
+$dropdown-link-active-bg: $dropdown-link-hover-bg;
+$dropdown-inner-border-radius: 0;
+$dropdown-item-padding-x: $input-padding-x;
+$dropdown-item-padding-y: $input-padding-y + remsize(1);
+
+// Pagination
+
+$pagination-link-size: 42px;
+$pagination-link-size-lg: 45px;
+$pagination-font-size: 14px;
+$pagination-font-size-lg: 16px;
+
+// Cards
+
+$card-border-radius: 0;
+$card-inner-border-radius: 0;
+$card-spacer-y: $spacer * 0.75;
+$card-spacer-x: $spacer * 0.75;
+$card-border-width: 0;
+$card-border-color: $light-black;
+$card-color: inherit;
+
+// Tooltips
+
+$tooltip-font-size: remsize(12);
+$tooltip-color: $white-strong;
+$tooltip-bg: $dark-black;
+$tooltip-max-width: 290px;
+$tooltip-padding-y: $spacer;
+$tooltip-padding-x: $spacer;
+
+// Popovers
+
+$popover-font-size: inherit;
+$popover-max-width: 350px;
+$popover-max-width-xs: 290px;
+$popover-body-color: inherit;
+$popover-header-bg: transparent;
+$popover-border-width: 0px;
+$popover-border-radius: remsize(4);
+
+$popover-header-padding-x: $spacer * 2;
+$popover-header-padding-y: $spacer * 2;
+
+$popover-body-padding-x: $spacer * 2;
+$popover-body-padding-y: $spacer * 2;
+
+// Badges
+
+$badge-font-size: remsize(14);
+$badge-font-weight: normal;
+
+// Modals
+
+$modal-inner-padding: 0;
+$modal-footer-margin-between: 0;
+$modal-dialog-margin: 0;
+
+$modal-content-border-radius: 0;
+$modal-content-inner-border-radius: 0;
+
+$modal-backdrop-bg: $black;
+$modal-backdrop-opacity: 0.6;
+
+$modal-header-border-width: 0;
+$modal-footer-border-width: 0;
+
+$modal-header-padding-y: $spacer * 0.75;
+$modal-header-padding-x: $spacer;
+$modal-header-padding: $modal-header-padding-y $modal-header-padding-x;
+
+$modal-xl: 980px;
+$modal-lg: 790px;
+$modal-md: 600px;
+$modal-sm: 410px;
+
+// Alerts
+
+$alert-padding-y: $spacer * 0.5;
+$alert-padding-x: $spacer * 0.5;
+$alert-margin-bottom: $spacer;
+$alert-border-radius: remsize(3);
+$alert-border-width: 0;
+
+// Progress bars
+
+$progress-height: 4px;
+$progress-bg: $black-10;
+$progress-border-radius: 2px;
+$progress-bar-bg: $black-95;
+
+// List group
+
+$list-group-color: $body-color;
+$list-group-bg: $bg-light-primary;
+$list-group-border-color: $black-25;
+$list-group-border-radius: 0;
+$list-group-item-padding-y: $spacer * 0.5;
+$list-group-item-padding-x: $spacer;
+
+$list-group-hover-bg: $bg-light-tertiary;
+$list-group-active-color: $white-strong;
+$list-group-active-bg: $bg-dark-primary;
+$list-group-active-border-color: $list-group-active-bg;
+
+$list-group-disabled-color: $text-muted;
+$list-group-disabled-bg: $list-group-bg;
+
+$list-group-action-color: $black-normal;
+$list-group-action-hover-color: $black-normal;
+
+$list-group-action-active-color: $black-normal;
+$list-group-action-active-bg: $bg-light-tertiary;
+
+// Breadcrumbs
+
+$breadcrumb-padding-x: unset;
+$breadcrumb-margin-bottom: unset;
+$breadcrumb-bg: transparent;
+$breadcrumb-divider-color: unset;
+$breadcrumb-active-color: unset;
+$breadcrumb-divider: '';
+
+// Carousel
+
+$carousel-control-color: #fff;
+$carousel-indicator-width: 14px;
+$carousel-indicator-height: 14px;
+$carousel-indicator-spacer: 0;
+$carousel-indicator-active-bg: $black-10;
+$carousel-indicator-hit-area-height: 15px;
+
+$carousel-control-prev-icon-bg: none;
+$carousel-control-next-icon-bg: none;
+// Spinners
+
+$spinner-width: 32px;
+$spinner-height: 32px;
+$spinner-border-width: 0;
+$spinner-width-sm: 24px;
+$spinner-height-sm: 24px;
+$spinner-border-width-sm: 0;
+
+$close-font-size: $spacer * 1.5;

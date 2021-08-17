@@ -1,0 +1,128 @@
+@import 'common';
+@import 'bootstrap/scss/alert';
+
+.alert-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: remsize(40);
+	height: 100%;
+	border-top-left-radius: remsize(3);
+	border-bottom-left-radius: remsize(3);
+}
+
+.alert {
+	display: flex;
+	padding: map-get($spacers, '8p') remsize(40);
+
+	> .close {
+		display: block;
+		position: absolute;
+		text-align: right;
+		padding-right: 8px;
+		width: 48px;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+
+	&.action {
+		box-shadow: map-get(map-get($shadows, 'md'), light);
+		padding-right: map-get($spacers, '8p');
+
+		> .alert-content {
+			margin-left: map-get($spacers, '8p');
+			margin-right: map-get($spacers, '12p');
+		}
+
+		@include darkTheme {
+			> .close > svg {
+				fill: $white;
+			}
+		}
+	}
+
+	&.bordered {
+		border-width: 1px;
+		@include darkTheme {
+			> .close > svg {
+				fill: $white;
+			}
+		}
+	}
+
+	&-lg {
+		padding: 18px 62px 18px 62px;
+
+		> .alert-icon {
+			width: 62px;
+		}
+
+		&.action {
+			> .alert-content {
+				margin-left: map-get($spacers, '16p');
+			}
+		}
+	}
+
+	&.spaced {
+		padding: map-get($spacers, '32p');
+
+		> .close {
+			height: 48px;
+		}
+	}
+
+	$alert-types: (
+		'info': (
+			'colors': $info-colors,
+			'bordered': $info-bordered,
+			'action': $info-action,
+			'spaced': $info-spaced,
+		),
+		'error': (
+			'colors': $error-colors,
+			'bordered': $error-bordered,
+			'action': $error-action,
+			'spaced': $error-spaced,
+		),
+		'warning': (
+			'colors': $warning-colors,
+			'bordered': $warning-bordered,
+			'action': $warning-action,
+			'spaced': $warning-spaced,
+		),
+		'success': (
+			'colors': $success-colors,
+			'bordered': $success-bordered,
+			'action': $success-action,
+			'spaced': $success-spaced,
+		),
+	);
+
+	@each $type, $map in $alert-types {
+		$colors: map-get($map, 'colors');
+		$bordered: map-get($map, 'bordered');
+		$action: map-get($map, 'action');
+		$spaced: map-get($map, 'spaced');
+		&.alert-#{$type} {
+			@include alert-type($colors...);
+
+			&.action {
+				@include alert-type($action...);
+			}
+
+			&.bordered {
+				@include alert-type($bordered...);
+			}
+
+			&.spaced {
+				@include alert-type($spaced...);
+			}
+		}
+	}
+}

@@ -1,0 +1,85 @@
+@import 'common';
+
+%section-top-paddings {
+	padding-top: map-get($spacers, '56p');
+
+	@include media-breakpoint-up(sm) {
+		padding-top: map-get($spacers, '80p');
+	}
+
+	@include media-breakpoint-up(md) {
+		padding-top: map-get($spacers, '104p');
+	}
+}
+
+%section-bottom-paddings {
+	padding-bottom: map-get($spacers, '56p');
+
+	@include media-breakpoint-up(sm) {
+		padding-bottom: map-get($spacers, '80p');
+	}
+
+	@include media-breakpoint-up(md) {
+		padding-bottom: map-get($spacers, '104p');
+	}
+}
+
+%section-block-paddings {
+	padding-top: map-get($spacers, '56p');
+	padding-bottom: map-get($spacers, '56p');
+
+	@include media-breakpoint-up(sm) {
+		padding-top: map-get($spacers, '56p');
+		padding-bottom: map-get($spacers, '56p');
+	}
+
+	@include media-breakpoint-up(md) {
+		padding-top: map-get($spacers, '80p');
+		padding-bottom: map-get($spacers, '80p');
+	}
+}
+
+.section {
+	&-header {
+		@extend %section-top-paddings;
+		@extend %section-bottom-paddings;
+	}
+
+	&-block {
+		@extend %section-block-paddings;
+
+		&:first-of-type {
+			@extend %section-top-paddings;
+		}
+
+		&:last-of-type {
+			@extend %section-bottom-paddings;
+		}
+
+		&.fixed-height {
+			@include media-breakpoint-up(md) {
+				min-height: 575px;
+			}
+
+			@include media-breakpoint-up(lg) {
+				min-height: 723px;
+			}
+		}
+
+		&.fixed-height-xs {
+			@include media-breakpoint-up(md) {
+				min-height: 190px;
+			}
+		}
+
+		&.fixed-height-sm {
+			@include media-breakpoint-up(md) {
+				min-height: 239px;
+			}
+		}
+	}
+
+	&-header + &-block {
+		padding-top: 0;
+	}
+}

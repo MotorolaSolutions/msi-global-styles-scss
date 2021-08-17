@@ -1,0 +1,28 @@
+@import 'common';
+$status-variations: success, error, info;
+
+.status {
+	display: inline-block;
+	vertical-align: baseline;
+	margin-right: map-get($spacers, '8p');
+}
+
+.status-partial {
+	.full-circle {
+		clip-path: url(#status-mask);
+	}
+}
+
+.status-unapplied {
+	.full-circle {
+		display: none;
+	}
+}
+
+@each $variation in $status-variations {
+	.status-#{$variation} {
+		.full-circle {
+			fill: map-get($alert-colors, $variation);
+		}
+	}
+}

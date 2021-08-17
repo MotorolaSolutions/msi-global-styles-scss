@@ -1,0 +1,78 @@
+// dig-check-32
+$form-feedback-icon-valid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='%2339b54a' class='fill-primary' fill-rule='nonzero' d='M14.477 19.649L23.127 11l.691.692-9.34 9.34L9 15.555l.692-.692z'/%3E%3C/svg%3E");
+
+// dig-alert-32
+$form-feedback-icon-invalid: str-replace(
+	url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='#{$error}' class='fill-primary' fill-rule='nonzero' d='M23.837 22.146L16.611 9.154c-.077-.154-.308-.154-.385 0L9 22.146v.23l.23.154h14.453l.231-.153v-.231h-.077zm-6.765-8.533l-.307 4.997h-.692l-.308-4.997h1.384-.077zm-.692 7.457a.689.689 0 0 1-.692-.692c0-.385.308-.692.692-.692.385 0 .692.307.692.692a.689.689 0 0 1-.692.692z'/%3E%3C/svg%3E"),
+	'#',
+	'%23'
+);
+
+// dig-alert-32
+$form-feedback-icon-warning: str-replace(
+	url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='#{$warning}' class='fill-primary' fill-rule='nonzero' d='M23.837 22.146L16.611 9.154c-.077-.154-.308-.154-.385 0L9 22.146v.23l.23.154h14.453l.231-.153v-.231h-.077zm-6.765-8.533l-.307 4.997h-.692l-.308-4.997h1.384-.077zm-.692 7.457a.689.689 0 0 1-.692-.692c0-.385.308-.692.692-.692.385 0 .692.307.692.692a.689.689 0 0 1-.692.692z'/%3E%3C/svg%3E"),
+	'#',
+	'%23'
+);
+
+// dig-alert-32
+$form-feedback-icon-dark-warning: str-replace(
+	url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='#{$warning}' class='fill-primary' fill-rule='nonzero' d='M23.837 22.146L16.611 9.154c-.077-.154-.308-.154-.385 0L9 22.146v.23l.23.154h14.453l.231-.153v-.231h-.077zm-6.765-8.533l-.307 4.997h-.692l-.308-4.997h1.384-.077zm-.692 7.457a.689.689 0 0 1-.692-.692c0-.385.308-.692.692-.692.385 0 .692.307.692.692a.689.689 0 0 1-.692.692z'/%3E%3C/svg%3E"),
+	'#',
+	'%23'
+);
+
+// dig-info-32
+$form-feedback-icon-info: str-replace(
+	url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='#{$info}' class='fill-primary' fill-rule='nonzero' d='M16.457 9C12.383 9 9 12.306 9 16.457c0 4.075 3.306 7.457 7.457 7.457 4.075 0 7.457-3.306 7.457-7.457 0-4.074-3.306-7.457-7.457-7.457zm1.076 11.608c-.384.154-1 .385-1.46.385-.308 0-.538-.077-.692-.23-.23-.231-.23-.539-.23-.923.076-.538.614-2.537.768-3.383.077-.23.077-.692-.077-.846-.23-.23-.846-.076-1.153 0l.077-.384c.384-.154 1-.384 1.384-.384.307 0 .538.077.691.23.231.23.231.615.231.923 0 .23 0 .154-.692 2.921-.077.385-.307 1.076 0 1.307.308.23 1 .077 1.153 0l-.077.384h.077zm-.384-7.303a.689.689 0 0 1-.692-.692c0-.384.308-.692.692-.692.384 0 .692.308.692.692a.689.689 0 0 1-.692.692z'/%3E%3C/svg%3E"),
+	'#',
+	'%23'
+);
+
+$custom-form-validation-states: (
+	'valid': (
+		'color': $form-feedback-valid-color,
+		'colorDark': $success,
+		'borderColor': $success,
+		'borderColorDark': $success,
+		'icon': $form-feedback-icon-valid,
+		'iconDark': $form-feedback-icon-valid,
+	),
+	'invalid': (
+		'color': $form-feedback-invalid-color,
+		'colorDark': $error,
+		'borderColor': $error,
+		'borderColorDark': $error,
+		'icon': $form-feedback-icon-invalid,
+		'iconDark': $form-feedback-icon-invalid,
+	),
+	'warning': (
+		'color': $warning-dark,
+		'colorDark': $warning,
+		'borderColor': $warning,
+		'borderColorDark': $warning,
+		'icon': $form-feedback-icon-warning,
+		'iconDark': $form-feedback-icon-dark-warning,
+	),
+	'information': (
+		'color': $info-dark,
+		'colorDark': $info,
+		'borderColor': $info,
+		'borderColorDark': $info,
+		'icon': $form-feedback-icon-info,
+		'iconDark': $form-feedback-icon-info,
+	),
+);
+
+$form-xs-max-width: 345px;
+
+$input-des-focus-border: 1px solid $input-btn-focus-color;
+$input-des-focus-box-shadow: 0 0 0 $input-btn-focus-width rgba($input-btn-focus-color, 0.5);
+$input-error-focus-box-shadow: 0 0 0 2px rgba($error, 0.5);
+$input-success-focus-box-shadow: 0 0 0 2px rgba($success, 0.5);
+$input-warning-focus-box-shadow: 0 0 0 2px rgba($error, 0.5);
+$input-info-focus-box-shadow: 0 0 0 2px rgba($info, 0.5);
+
+$form-check-input-margin-y-sm: 8px;
+$form-check-disabled-border: #e6e7e8;
+$input-border-width: remsize(1);

@@ -1,0 +1,255 @@
+@import 'common';
+@import 'bootstrap/scss/type';
+
+.h1-nav {
+	@include responsiveFont($type-h1-nav);
+}
+
+h1,
+.h1 {
+	@include responsiveFont($type-h1);
+}
+
+h2,
+.h2 {
+	@include responsiveFont($type-h2);
+}
+
+h3,
+.h3 {
+	@include responsiveFont($type-h3);
+}
+
+h4,
+.h4 {
+	@include responsiveFont($type-h4);
+}
+
+h5,
+.h5 {
+	@include responsiveFont($type-h5);
+}
+
+h6,
+.h6 {
+	@include responsiveFont($type-h6);
+}
+
+.p-xl {
+	@include responsiveFont($type-p-xl);
+	&.non-responsive {
+		@include responsiveFont($type-p-xl, false);
+	}
+}
+
+.p-lg,
+.lead {
+	@include responsiveFont($type-p-lg);
+	&.non-responsive {
+		@include responsiveFont($type-p-lg, false);
+	}
+}
+
+p,
+body,
+.p-md {
+	@include responsiveFont($type-p-md);
+}
+
+.p-md.non-responsive {
+	@include responsiveFont($type-p-md, false);
+}
+
+.p-sm,
+.p-small {
+	@include responsiveFont($type-p-sm);
+	&.non-responsive {
+		@include responsiveFont($type-p-sm, false);
+	}
+}
+
+.p-xs,
+small,
+.small {
+	@include responsiveFont($type-p-xs);
+}
+
+.caption {
+	@include responsiveFont($type-caption);
+}
+
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6,
+p.small,
+p.p-sm,
+p.p-small,
+p.p-xs {
+	margin-bottom: map-get($spacers, '12p');
+}
+
+// stylelint-disable no-descending-specificity
+
+/* Links styles */
+
+a {
+	> .link-text {
+		@extend %link-underline;
+	}
+
+	&:hover > .link-text {
+		@extend %link-underline-hover;
+	}
+}
+
+.richText a:not([class]),
+.link {
+	&:not(.no-underline) {
+		@extend %link-underline;
+
+		&:hover {
+			@extend %link-underline-hover;
+		}
+	}
+
+	@include lightTheme {
+		color: $link-color;
+
+		.fill-primary {
+			fill: $link-color;
+		}
+
+		.stroke-primary {
+			stroke: $link-color;
+		}
+
+		&:hover {
+			color: $link-color;
+		}
+	}
+
+	@include darkTheme {
+		color: $link-color-inverted;
+
+		.fill-primary {
+			fill: $link-color-inverted;
+		}
+
+		.stroke-primary {
+			stroke: $link-color-inverted;
+		}
+
+		&:hover {
+			color: $link-color-inverted;
+		}
+	}
+}
+
+.bg-dark {
+	color: $body-color-inverted;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	.h1,
+	.h2,
+	.h3,
+	.h4,
+	.h5,
+	.h6,
+	.h1-nav {
+		color: $headings-color-inverted;
+	}
+
+	.bg-light {
+		color: $body-color;
+
+		h1,
+		.h1 {
+			color: map-get(map-get($type-h1, xs), color);
+		}
+
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		.h1,
+		.h2,
+		.h3,
+		.h4,
+		.h5,
+		.h6,
+		.h1-nav {
+			color: $headings-color;
+		}
+	}
+}
+
+hr {
+	&.hr-10 {
+		opacity: 0.1;
+	}
+
+	&.hr-25 {
+		opacity: 0.25;
+	}
+
+	&,
+	&.hr-40 {
+		opacity: 0.4;
+	}
+
+	&.hr-60 {
+		opacity: 0.6;
+	}
+
+	@include lightTheme(false) {
+		border-top-color: $black;
+	}
+
+	@include darkTheme {
+		border-top-color: $white;
+	}
+}
+
+li {
+	margin-bottom: map-get($spacers, '12p');
+	ul,
+	ol {
+		margin-top: map-get($spacers, '12p');
+	}
+}
+
+ul,
+ol {
+	padding-left: map-get($spacers, '20p');
+}
+
+.list-condensed {
+	li {
+		margin-bottom: map-get($spacers, '8p');
+	}
+
+	ul,
+	ol {
+		margin-top: map-get($spacers, '8p');
+	}
+}
+
+.list-compressed li {
+	margin-bottom: 0;
+}
+
+// stylelint-enable
+
+mark,
+.mark {
+	color: inherit;
+}

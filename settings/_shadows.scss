@@ -1,0 +1,41 @@
+$shadows: (
+	'none': (
+		light: none,
+		dark: none,
+		postfix: '-none',
+	),
+	'xs': (
+		light: 0 10px 20px 0 rgba(35, 35, 35, 0.08),
+		dark: 0 10px 20px 0 rgba(15, 15, 15, 0.8),
+		postfix: '-xs',
+	),
+	'sm': (
+		light: 0 9px 14px 0 rgba(35, 35, 35, 0.14),
+		dark: 0 9px 14px 0 rgba(15, 15, 15, 0.8),
+		postfix: '-sm',
+	),
+	'md': (
+		light: 0 12px 16px 0 rgba(35, 35, 35, 0.2),
+		dark: 0 12px 16px 0 rgba(15, 15, 15, 0.8),
+		postfix: '',
+	),
+	'lg': (
+		light: 0 20px 30px 0 rgba(35, 35, 35, 0.2),
+		dark: 0 20px 30px 0 rgba(15, 15, 15, 0.8),
+		postfix: '-lg',
+	),
+	'xl': (
+		light: 0 30px 40px 0 rgba(35, 35, 35, 0.3),
+		dark: 0 30px 40px 0 rgba(15, 15, 15, 0.8),
+		postfix: '-xl',
+	),
+);
+
+$button-search-autocomplete-shadow-focus: 0 0 remsize(6) remsize(1) rgba(0, 94, 184, 0.7);
+$box-shadow-gray: 0 0 6px 1px $dark-gray;
+$box-shadow-gray-inverted: 0 0 6px 1px rgba($dark-gray, 0.7);
+$input-group-shadow: 0 0 6px 1px rgba(0, 83, 184, 0.7);
+$input-group-shadow-inverted: 0 0 6px 1px rgba($light-blue, 0.7);
+$tag-shadow-focus: 0 0 6px 1px $input-btn-focus-color;
+$step-shadow: 0 0 6px 1px rgba($light-blue, 0.7);
+$popover-shadow-secondary: 0 -1px 16px 0 rgba(0, 0, 0, 0.06);

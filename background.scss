@@ -1,0 +1,79 @@
+@import 'common';
+
+%bg-dark-primary {
+	background-color: $bg-dark-primary;
+}
+
+%bg-dark-secondary {
+	background-color: $bg-dark-secondary;
+}
+
+%bg-dark-tertiary {
+	background-color: $bg-dark-tertiary;
+}
+
+%bg-light-primary {
+	background-color: $bg-light-primary;
+}
+
+%bg-light-secondary {
+	background-color: $bg-light-secondary;
+}
+
+%bg-light-tertiary {
+	background-color: $bg-light-tertiary;
+}
+
+// stylelint-disable no-descending-specificity
+.bg-dark {
+	&,
+	&.bg-primary,
+	.bg-primary {
+		@extend %bg-dark-primary;
+	}
+
+	&.bg-secondary,
+	.bg-secondary {
+		@extend %bg-dark-secondary;
+	}
+
+	&.bg-tertiary,
+	.bg-tertiary {
+		@extend %bg-dark-tertiary;
+	}
+}
+
+.bg-primary,
+.bg-dark .bg-light,
+.bg-dark .bg-light.bg-primary,
+.bg-dark .bg-light .bg-primary {
+	@extend %bg-light-primary;
+}
+
+.bg-secondary,
+.bg-dark .bg-light .bg-secondary,
+.bg-dark .bg-light.bg-secondary {
+	@extend %bg-light-secondary;
+}
+
+.bg-tertiary,
+.bg-dark .bg-light .bg-tertiary,
+.bg-dark .bg-light.bg-tertiary {
+	@extend %bg-light-tertiary;
+}
+
+.bg-striped,
+.bg-dark .bg-light.bg-striped,
+.bg-dark .bg-light .bg-striped {
+	> :nth-child(2n):not(.bg-dark) {
+		@extend %bg-light-secondary;
+	}
+}
+
+.bg-dark .bg-striped,
+.bg-dark.bg-striped {
+	> :nth-child(2n):not(.bg-light) {
+		@extend %bg-dark-secondary;
+	}
+}
+// stylelint-enable

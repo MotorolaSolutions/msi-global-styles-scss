@@ -1,0 +1,31 @@
+// stylelint-disable
+/* prettier-ignore */
+@font-face {
+	font-family: 'UniversLTStd'; // 57 condensed
+	src: url('../../assets/fonts/adc492fa-2e18-46e7-a334-19977a077ec2.eot');
+	src: url('../../assets/fonts/adc492fa-2e18-46e7-a334-19977a077ec2.eot?#iefix')
+		format('embedded-opentype'),
+		url('../../assets/fonts/14f0370a-8385-437e-b5b8-5cb89e20e2ff.woff') format('woff'),
+		url('../../assets/fonts/8c1d24ab-e7f8-4c29-a419-f87180fdf410.ttf') format('truetype'),
+		url('../../assets/fonts/9baaf87b-982d-45c0-9518-8f5aec7c1292.svg#9baaf87b-982d-45c0-9518-8f5aec7c1292')
+		format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+/* prettier-ignore */
+@font-face {
+	font-family: 'UniversLTStd-Cn'; // 67 bold condensed
+	src: url('../../assets/fonts/c1f2f059-579b-465a-a13f-d70acd6c6212.eot');
+	src: url('../../assets/fonts/c1f2f059-579b-465a-a13f-d70acd6c6212.eot?#iefix')
+		format('embedded-opentype'),
+		url('../../assets/fonts/b2388651-dd56-4c8e-8455-c55318f6a734.woff') format('woff'),
+		url('../../assets/fonts/346ec69d-90a7-4fef-a216-1a0dafbd3798.ttf') format('truetype'),
+		url('../../assets/fonts/d39b0ff2-cca2-4288-8f6a-c730f44feb81.svg#d39b0ff2-cca2-4288-8f6a-c730f44feb81')
+		format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+// stylelint-enable

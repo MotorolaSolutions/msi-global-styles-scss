@@ -1,0 +1,29 @@
+@import 'common';
+@import 'bootstrap/scss/images';
+
+.thumbnail {
+	border: 0;
+	position: relative;
+	transition: box-shadow $transition-duration-fast ease-in-out;
+	overflow: visible;
+	&:hover {
+		@include lightTheme {
+			box-shadow: map-get(map-get($shadows, 'md'), 'light');
+		}
+		@include darkTheme() {
+			box-shadow: map-get(map-get($shadows, 'md'), 'dark');
+		}
+	}
+	&:after {
+		@include overlay;
+		content: '';
+		transition: border, box-shadow $transition-duration-fast ease-in-out;
+		border: 1px solid transparent;
+	}
+	&:focus {
+		outline: none;
+		&:after {
+			@include input-focus();
+		}
+	}
+}

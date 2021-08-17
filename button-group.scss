@@ -1,0 +1,31 @@
+@import 'common';
+@import 'bootstrap/scss/button-group';
+
+.btn-group > .btn {
+	padding-left: map-get($spacers, '8p');
+	padding-right: map-get($spacers, '8p');
+	min-width: map-get($spacers, '48p');
+
+	&:first-child {
+		padding-left: map-get($spacers, '16p');
+	}
+
+	&:last-child {
+		padding-right: map-get($spacers, '16p');
+	}
+
+	&:not(:last-child) {
+		border-right-color: transparent;
+	}
+
+	&:hover,
+	&.hover {
+		z-index: 1;
+	}
+
+	&:focus,
+	&.focus {
+		border-right-color: $light-blue;
+		z-index: 3;
+	}
+}

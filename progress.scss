@@ -1,0 +1,56 @@
+@import 'common';
+@import 'bootstrap/scss/progress';
+
+$progress-bg-dark: $white-10;
+$progress-bar-bg-dark: $white-95;
+
+.progress {
+	@include lightTheme {
+		background-color: $progress-bg;
+	}
+	@include darkTheme {
+		background-color: $progress-bg-dark;
+	}
+}
+
+.progress-bar {
+	border-radius: $progress-border-radius;
+
+	@include lightTheme {
+		background-color: $progress-bar-bg;
+	}
+	@include darkTheme {
+		background-color: $progress-bar-bg-dark;
+	}
+
+	&.color {
+		@include lightTheme {
+			background-color: $link-color;
+		}
+
+		@include darkTheme {
+			background-color: $link-color-inverted;
+		}
+	}
+
+	&.success.success {
+		background-color: $success;
+	}
+
+	&.warning.warning {
+		background-color: $warning;
+	}
+
+	&.error.error {
+		background-color: $error;
+	}
+
+	&.on-hold {
+		@include lightTheme {
+			background-color: $black-10;
+		}
+		@include darkTheme {
+			background-color: $white-10;
+		}
+	}
+}

@@ -1,0 +1,81 @@
+@import 'common';
+
+.product-color {
+	display: inline-block;
+	position: relative;
+	user-select: none;
+	height: remsize(24);
+	margin: map-get($spacers, 12);
+
+	&-label {
+		input:focus + & {
+			@include input-focus();
+		}
+		@include tap-area-selector();
+		position: relative;
+		text-indent: 100%;
+		white-space: nowrap;
+		height: remsize(24);
+		width: remsize(24);
+		border-radius: 50%;
+		background-color: $gray;
+		border: 1px solid $black-25;
+		cursor: pointer;
+		&:after {
+			content: '';
+			position: absolute;
+			opacity: 0;
+			left: remsize(5);
+			top: remsize(5);
+			border-left: 1px solid $deep-black;
+			border-bottom: 1px solid $deep-black;
+			transform: rotate(-45deg);
+			width: remsize(14);
+			height: remsize(8);
+		}
+
+		@include media-breakpoint-up(lg) {
+			&:before {
+				width: 32px;
+			}
+		}
+	}
+
+	input {
+		position: absolute;
+		opacity: 0;
+		height: 0;
+		width: 0;
+		&:checked ~ .product-color-label {
+			background-color: $gray;
+		}
+		&:checked ~ .product-color-label:after {
+			opacity: 1;
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		margin: map-get($spacers, 4) map-get($spacers, 8);
+	}
+
+	@each $name, $value in $product-colors {
+		&.#{$name} {
+			.product-color-label {
+				background-color: $value;
+			}
+			&:hover input ~ .product-color-label,
+			&:hover input:checked ~ .product-color-label {
+				background-color: darken($value, 10);
+			}
+			input:checked ~ .product-color-label {
+				background-color: $value;
+			}
+		}
+	}
+}
+
+.product-color.black .product-color-label::after,
+.product-color.violet .product-color-label::after,
+.product-color.navy-blue .product-color-label::after {
+	border-color: $white;
+}

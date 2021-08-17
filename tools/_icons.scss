@@ -1,0 +1,19 @@
+$data-svg-prefix: 'data:image/svg+xml;charset=utf-8,';
+
+@function get-icon-url($icons, $iconName, $color: #000) {
+	$icon: map-get($icons, $iconName);
+	@if (not $icon) {
+		@error $iconName;
+	}
+	$placeholder: '%%COLOR%%';
+	$data-uri: str-replace($data-svg-prefix + $icon, $placeholder, $color);
+	$data-uri: str-replace($data-uri, '#', '%23');
+	$data-uri: str-replace($data-uri, '<', '%3C');
+	$data-uri: str-replace($data-uri, '>', '%3E');
+	$data-uri: str-replace($data-uri, '"', '%22');
+	@return $data-uri;
+}
+
+@function get-icon($icons, $icon, $color: #000) {
+	@return url(get-icon-url($icons, $icon, $color));
+}

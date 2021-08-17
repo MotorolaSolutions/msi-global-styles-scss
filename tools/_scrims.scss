@@ -1,0 +1,15 @@
+@mixin custom-scrim(
+	$gradient: linear-gradient(0deg, $black 0%, $black-60 100%),
+	$opacity: null,
+	$backgroundBase: null
+) {
+	@if $opacity {
+		opacity: $opacity;
+	}
+
+	@if $backgroundBase {
+		background: $backgroundBase;
+	}
+
+	background-image: $gradient;
+}

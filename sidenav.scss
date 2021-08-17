@@ -1,0 +1,260 @@
+@import 'common';
+
+.sidenav-wrapper {
+	@include media-breakpoint-up(sm) {
+		display: flex;
+	}
+
+	@media (min-width: 1188px) {
+		margin-left: 0;
+	}
+}
+
+.sidenav {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 48px;
+	@include lightTheme {
+		background-color: $white;
+	}
+	@include darkTheme {
+		background-color: $dark-black;
+	}
+	z-index: 1;
+	transition: height $transition-duration-medium ease-in-out;
+	overflow: hidden;
+
+	.accordion > .card > .card-header:before {
+		left: 2px;
+		right: 2px;
+	}
+
+	.card-header {
+		padding-left: map-get($spacers, '16p');
+	}
+
+	@include media-breakpoint-up(sm) {
+		right: auto;
+		bottom: auto;
+		width: 48px + 1px;
+		height: 100vh;
+		padding-top: 75px;
+		transition-property: width;
+		overflow-y: auto;
+		overflow-x: hidden;
+		@include lightTheme {
+			border-right: 1px solid $black-10;
+		}
+		@include darkTheme {
+			border-right: 1px solid $white-10;
+		}
+
+		&.sidenav-without-icons {
+			transition-property: height, width;
+
+			> .sidenav-button {
+				height: 75px;
+			}
+		}
+	}
+
+	@media (max-width: 1187.98px) and (min-width: 576px) {
+		&:not(.opened) {
+			overflow-y: hidden;
+
+			> .sidenav-button {
+				border-width: 1px;
+				border-style: solid;
+				width: 48px;
+				@include lightTheme {
+					border-color: $black-10;
+				}
+				@include darkTheme {
+					border-color: $white-10;
+				}
+			}
+			&.sidenav-without-icons {
+				height: 75px;
+			}
+		}
+	}
+
+	@media (min-width: 1188px) {
+		position: static;
+		padding-top: 0;
+		width: 280px;
+
+		&.sidenav-without-icons {
+			height: 100vh;
+			> nav {
+				display: block;
+			}
+		}
+	}
+
+	&.opened {
+		height: 100%;
+		overflow: auto;
+
+		.sidenav-header {
+			display: flex;
+			padding: map-get($spacers, '8p') map-get($spacers, '16p');
+			flex-direction: column;
+		}
+
+		> .sidenav-button {
+			font-weight: 300;
+			font-family: Verdana, sans-serif;
+			font-size: remsize(24);
+			position: absolute;
+			height: remsize(24);
+			width: remsize(24);
+			top: map-get($spacers, '8p');
+			right: map-get($spacers, '8p');
+			> .sidenav-button-close-icon {
+				display: block;
+			}
+		}
+
+		@include media-breakpoint-up(sm) {
+			width: 280px;
+			height: 100vh;
+			padding-top: 0;
+
+			> .sidenav-button {
+				left: unset;
+				display: block;
+
+				> .sidenav-button-expand-icon {
+					display: none;
+				}
+			}
+
+			.sidenav-group-label {
+				padding: map-get($spacers, '16p');
+				height: auto;
+			}
+
+			&.sidenav-without-icons {
+				.list-group-item {
+					padding-left: map-get($spacers, '24p');
+					padding-right: map-get($spacers, '24p');
+				}
+			}
+		}
+
+		@media (max-width: 1187.98px) and (min-width: 576px) {
+			&.sidenav-without-header > nav {
+				padding-top: 40px;
+			}
+		}
+
+		@media (min-width: 1188px) {
+			> .sidenav-button {
+				display: none;
+			}
+		}
+	}
+
+	.list-group-item {
+		padding-left: map-get($spacers, '48p');
+	}
+}
+
+.sidenav-group-label {
+	padding: map-get($spacers, '16p');
+	border-top-width: 1px;
+	border-top-style: solid;
+	margin-top: map-get($spacers, '12p');
+
+	@include lightTheme {
+		border-color: $black-10;
+	}
+	@include darkTheme {
+		border-color: $white-10;
+	}
+}
+// stylelint-disable no-descending-specificity
+.sidenav-button {
+	background-color: transparent;
+	border: 0;
+	padding: 0;
+	&:focus {
+		outline: none;
+	}
+	&::after {
+		content: '';
+		@include overlay;
+	}
+}
+
+.sidenav-header {
+	display: none;
+}
+
+.sidenav-button-close-icon,
+.sidenav-button-expand-icon {
+	display: none;
+}
+// stylelint-enable
+@include media-breakpoint-up(sm) {
+	.sidenav-button {
+		position: absolute;
+		top: 0;
+
+		&:before {
+			display: none;
+		}
+	}
+
+	.sidenav-group-label {
+		padding: 0;
+		height: 0;
+		overflow: hidden;
+	}
+
+	.sidenav-button-close-icon {
+		display: none;
+	}
+
+	.sidenav-button-expand-icon {
+		position: relative;
+		display: flex;
+		height: 75px;
+		width: 48px;
+		justify-content: center;
+		align-items: center;
+		&::after {
+			position: absolute;
+			content: '';
+			width: 48px;
+			height: 100vh;
+			top: 0;
+			left: 0;
+		}
+	}
+}
+
+@media (min-width: 1188px) {
+	.sidenav-header {
+		display: block;
+		padding: map-get($spacers, '8p') map-get($spacers, '16p');
+	}
+
+	.sidenav-button {
+		display: none;
+	}
+
+	.sidenav-group-label {
+		padding: map-get($spacers, '16p');
+		height: auto;
+	}
+}
+
+@include media-breakpoint-down(md) {
+	.sidenav-open {
+		overflow: hidden;
+	}
+}

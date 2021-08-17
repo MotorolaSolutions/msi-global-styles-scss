@@ -1,0 +1,14 @@
+@import 'common';
+@each $variant, $breakpoints in $scrims {
+	@each $breakpoint, $rules in $breakpoints {
+		.scrim-#{$variant} {
+			@include media-breakpoint-up($breakpoint) {
+				@include custom-scrim(
+					map-get($rules, gradient),
+					map-get($rules, opacity),
+					map-get($rules, backgroundBase)
+				);
+			}
+		}
+	}
+}

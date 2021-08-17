@@ -1,0 +1,12 @@
+@import 'common';
+.row-5 {
+	@include make-grid-columns(5);
+}
+
+.row-5.no-gutters {
+	> .col,
+	> [class*='col-'] {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}

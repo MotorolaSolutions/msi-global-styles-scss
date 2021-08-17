@@ -1,0 +1,54 @@
+@import 'common';
+.split {
+	@include media-breakpoint-down(sm) {
+		padding-top: 0 !important;
+	}
+
+	&-col {
+		@include media-breakpoint-down(sm) {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		&-media {
+			@include media-breakpoint-up(md) {
+				@include lightTheme() {
+					box-shadow: map-get(map-get($shadows, md), light);
+				}
+				@include darkTheme() {
+					box-shadow: map-get(map-get($shadows, md), dark);
+				}
+			}
+		}
+	}
+
+	&-media {
+		@include media-breakpoint-up(md) {
+			position: absolute;
+			display: flex;
+			align-items: center;
+			top: 0;
+			bottom: 0;
+			width: 50%;
+			overflow: hidden;
+
+			> * {
+				height: 100%;
+			}
+
+			&.right {
+				right: 0px;
+			}
+			&.left {
+				left: 0px;
+				justify-content: flex-end;
+			}
+		}
+
+		> * {
+			@include media-breakpoint-down(sm) {
+				max-width: 100%;
+			}
+		}
+	}
+}

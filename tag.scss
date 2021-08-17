@@ -1,0 +1,149 @@
+@import 'common';
+
+.tag {
+	@include responsiveFont($type-h6);
+	@include input-focus-selector();
+	position: relative;
+	@include tap-area-selector();
+	display: inline-flex;
+	padding: map-get($spacers, '4p') map-get($spacers, '16p');
+	border-radius: calc(#{$h6-font-size} + 16px);
+	border: 1px solid transparent;
+	margin-right: map-get($spacers, '8p');
+	margin-bottom: map-get($spacers, '8p');
+	cursor: default;
+	transition: all $transition-duration-fast ease-in-out;
+	transition-property: color, background-color;
+	max-width: 290px;
+	outline: none;
+	align-items: center;
+	&-button {
+		position: relative;
+		@include input-focus-selector();
+		@include tap-area-selector();
+		height: remsize(20);
+		width: remsize(20);
+		flex-shrink: 0;
+		background: none;
+		border: none;
+		padding: 0;
+		margin-top: -2px;
+		margin-bottom: -2px;
+		opacity: 0.6;
+
+		> svg {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+
+		&:last-child {
+			margin-right: -7px;
+		}
+		&:first-child {
+			margin-left: -7px;
+		}
+
+		&:not(:disabled):not(.disabled) {
+			@include hover-focus() {
+				opacity: 0.95;
+			}
+		}
+	}
+
+	.badge {
+		top: -1px;
+		bottom: 0;
+	}
+
+	&.disabled,
+	&:disabled {
+		pointer-events: none;
+		cursor: default;
+	}
+
+	@include lightTheme {
+		background-color: $black-10;
+		color: $black-strong;
+		&:hover,
+		&.hover {
+			background-color: combineOverlays($black-muted, $black-10);
+		}
+		&:active,
+		&.active {
+			background-color: $black-strong;
+			color: $white-strong;
+			.fill-primary {
+				fill: $white;
+			}
+			&:hover,
+			&.hover,
+			&:focus,
+			&.focus {
+				background-color: combineOverlays($white-muted, $black-strong);
+			}
+		}
+		&.disabled {
+			background-color: $black-10;
+			color: $black-muted;
+			border: 1px solid $black-05;
+			.fill-primary {
+				fill: $black-muted;
+			}
+		}
+	}
+
+	@include darkTheme {
+		border: solid 1px $white-40;
+		color: $white-strong;
+		&:hover,
+		&.hover {
+			background-color: $white-muted;
+		}
+		&:active,
+		&.active {
+			background-color: $white-strong;
+			color: $black-strong;
+			.fill-primary {
+				fill: $black;
+			}
+			&:hover,
+			&.hover {
+				background-color: combineOverlays($black-muted, $white-strong);
+			}
+		}
+		&.disabled {
+			color: $white-10;
+			border: 1px solid $white-05;
+			background-color: $white-10;
+			.fill-primary {
+				fill: $white-10;
+			}
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		font-size: remsize(12);
+		padding: map-get($spacers, '12p') map-get($spacers, '20p');
+		.tag-button {
+			height: remsize(24);
+			width: remsize(24);
+			&:last-child {
+				margin-right: -5px;
+			}
+			&:first-child {
+				margin-left: -5px;
+			}
+		}
+	}
+}
+
+.tag-button:last-child::before {
+	width: 32px;
+	transform: translate(-25%, -50%);
+}
+
+.tag-button:first-child::before {
+	width: 32px;
+	transform: translate(-75%, -50%);
+}

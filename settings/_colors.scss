@@ -1,0 +1,189 @@
+$dark-blue: #005eb8;
+$dark-green: #6d712e;
+$midnight-blue: #24135f;
+$brown: #6d4f47;
+$light-blue: #00a3e0;
+$light-green: #b7bf10;
+$orange: #ff8200;
+$red: #cb333b;
+
+/* 30% shade colors */
+
+$dark-blue-30-shade: #004281;
+$dark-green-30-shade: #4c4f20;
+$midnight-blue-30-shade: #190d43;
+$brown-30-shade: #4c3732;
+$light-blue-30-shade: #00729d;
+$light-green-30-shade: #80860b;
+$orange-30-shade: #b35b00;
+$red-30-shade: #8e2429;
+
+/* 70% tint colors */
+
+$dark-blue-70-tint: #4d8ecd;
+$dark-green-70-tint: #999c6d;
+$midnight-blue-70-tint: #665a8f;
+$brown-70-tint: #99847e;
+$light-blue-70-tint: #4dbfe9;
+$light-green-70-tint: #cdd258;
+$orange-70-tint: #ffa84d;
+$red-70-tint: #db7076;
+
+/* 30% tint colors */
+
+$dark-blue-30-tint: #b3cfea;
+$dark-green-30-tint: #d3d4c0;
+$midnight-blue-30-tint: #bdb8cf;
+$brown-30-tint: #d3cac8;
+$light-blue-30-tint: #b3e3f6;
+$light-green-30-tint: #e9ecb7;
+$orange-30-tint: #ffdab3;
+$red-30-tint: #efc2c4;
+
+/* Extended Palette */
+
+$deep-gray: #a7a9ac;
+$dark-gray: #cccccc;
+$gray: #e5e5e5;
+$light-gray: #f2f2f2;
+$secondary: #fafafa;
+$white: #fff;
+$light-black: #666666;
+$text-black: #343434;
+$background-black: #1f1f1f;
+$dark-black: #232323;
+$deep-black: #111111;
+$black: #000;
+
+/* opacity colors */
+
+$black-0: rgba($black, 0);
+$black-02: rgba($black, 0.02);
+$black-05: rgba($black, 0.05);
+$black-10: rgba($black, 0.1);
+$black-25: rgba($black, 0.25);
+$black-40: rgba($black, 0.4);
+$black-60: rgba($black, 0.6);
+$black-80: rgba($black, 0.8);
+$black-95: rgba($black, 0.95);
+
+$white-02: rgba($white, 0.02);
+$white-05: rgba($white, 0.05);
+$white-10: rgba($white, 0.1);
+$white-25: rgba($white, 0.25);
+$white-40: rgba($white, 0.4);
+$white-60: rgba($white, 0.6);
+$white-80: rgba($white, 0.8);
+$white-95: rgba($white, 0.95);
+
+$black-strong: $black-95;
+$black-normal: $black-60;
+$black-muted: $black-25;
+
+$white-strong: $white-95;
+$white-normal: $white-60;
+$white-muted: $white-25;
+
+/* Alerts and Notifications */
+
+$info: #4ec0ed;
+$warning: #ffd73a;
+$strong-warning: #ff7d43;
+$error: #e23e4f;
+$success: #00c853;
+$info-dark: #1f7da3;
+$warning-dark: #996e00;
+$strong-warning-dark: #915330;
+$error-dark: #a61b29;
+$success-dark: #0a853d;
+
+$alert-colors: (
+	info: $info,
+	warning: $warning,
+	strong-warning: $strong-warning,
+	error: $error,
+	success: $success,
+);
+
+$alert-colors-dark: (
+	info: $info-dark,
+	warning: $warning-dark,
+	strong-warning: $strong-warning-dark,
+	error: $error-dark,
+	success: $success-dark,
+);
+
+/* backgrounds */
+
+$bg-light-primary: $white;
+$bg-light-secondary: $secondary;
+$bg-light-tertiary: $light-gray;
+$bg-dark-primary: $text-black;
+$bg-dark-secondary: $dark-black;
+$bg-dark-tertiary: $background-black;
+
+$brand-colors: (
+	dark-blue: (
+		base: $dark-blue,
+		shade-30: $dark-blue-30-shade,
+		tint-70: $dark-blue-70-tint,
+		tint-30: $dark-blue-30-tint,
+	),
+	dark-green: (
+		base: $dark-green,
+		shade-30: $dark-green-30-shade,
+		tint-70: $dark-green-70-tint,
+		tint-30: $dark-green-30-tint,
+	),
+	midnight-blue: (
+		base: $midnight-blue,
+		shade-30: $midnight-blue-30-shade,
+		tint-70: $midnight-blue-70-tint,
+		tint-30: $midnight-blue-30-tint,
+	),
+	brown: (
+		base: $brown,
+		shade-30: $brown-30-shade,
+		tint-70: $brown-70-tint,
+		tint-30: $brown-30-tint,
+	),
+	light-blue: (
+		base: $light-blue,
+		shade-30: $light-blue-30-shade,
+		tint-70: $light-blue-70-tint,
+		tint-30: $light-blue-30-tint,
+	),
+	light-green: (
+		base: $light-green,
+		shade-30: $light-green-30-shade,
+		tint-70: $light-green-70-tint,
+		tint-30: $light-green-30-tint,
+	),
+	orange: (
+		base: $orange,
+		shade-30: $orange-30-shade,
+		tint-70: $orange-70-tint,
+		tint-30: $orange-30-tint,
+	),
+	red: (
+		base: $red,
+		shade-30: $red-30-shade,
+		tint-70: $red-70-tint,
+		tint-30: $red-30-tint,
+	),
+);
+
+/* Product colors */
+
+$product-colors: (
+	rouge: #fb005a,
+	orange: #ffa33a,
+	yellow: #ffda08,
+	khaki: #b7bf10,
+	aquamarine: #00d4c0,
+	aqua: #009dd4,
+	navy-blue: #1110bf,
+	violet: #9d10bf,
+	black: $black,
+	gray: #d8d8d8,
+);

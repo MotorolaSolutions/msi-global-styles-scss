@@ -1,0 +1,75 @@
+@mixin font(
+	$size: false,
+	$height: false,
+	$family: false,
+	$weight: false,
+	$spacing: false,
+	$color: false,
+	$transform: false
+) {
+	@if ($size) {
+		font-size: remsize($size);
+	}
+	@if ($height) {
+		line-height: remsize($height);
+	}
+	@if $family {
+		font-family: $family;
+	}
+	@if $weight {
+		font-weight: $weight;
+	}
+	@if $spacing {
+		letter-spacing: remsize($spacing);
+	}
+	@if $color {
+		color: $color;
+	}
+	@if $transform {
+		text-transform: $transform;
+	}
+}
+
+@mixin responsiveFont($font, $responsive: true) {
+	$nonResponsiveFont: ();
+	@each $breakpointName, $breakpointFont in $font {
+		$nonResponsiveFont: map-merge($nonResponsiveFont, $breakpointFont);
+		@if ($responsive) {
+			@include media-breakpoint-up($breakpointName) {
+				@include font($breakpointFont...);
+			}
+		}
+	}
+	@if (not $responsive) {
+		@include font($nonResponsiveFont...);
+	}
+}
+
+@mixin link-underline($color, $color-inverted) {
+	// text-decoration: none;
+	background-repeat: no-repeat;
+	background-size: 0 100%;
+	transition: background-size $transition-duration-slow ease;
+
+	@include lightTheme {
+		background-image: linear-gradient(
+			transparent calc(100% - 1px),
+			adjust-color($color, $alpha: -0.5) 1px
+		);
+	}
+
+	@include darkTheme {
+		background-image: linear-gradient(
+			transparent calc(100% - 1px),
+			adjust-color($color-inverted, $alpha: -0.5) 1px
+		);
+	}
+}
+
+%link-underline {
+	@include link-underline($link-color, $link-color-inverted);
+}
+
+%link-underline-hover {
+	background-size: 100% 100%;
+}

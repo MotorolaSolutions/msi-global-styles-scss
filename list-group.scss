@@ -1,0 +1,87 @@
+@import 'common';
+@import 'bootstrap/scss/list-group';
+
+.list-group-item-action {
+	@include input-focus-selector();
+	@include responsiveFont($type-p-md, false);
+	padding-top: 10px;
+	padding-bottom: 9px;
+
+	@include media-breakpoint-up(sm) {
+		@include responsiveFont($type-p-sm, false);
+		padding-top: map-get($spacers, '8p');
+		padding-bottom: map-get($spacers, '8p');
+	}
+
+	@include lightTheme(false) {
+		color: $list-group-action-color;
+
+		@include hover-focus {
+			color: $list-group-action-hover-color;
+			background-color: $list-group-hover-bg;
+		}
+
+		&:active {
+			color: $list-group-action-active-color;
+			background-color: $list-group-action-active-bg;
+		}
+	}
+
+	@include darkTheme {
+		color: $white-normal;
+
+		@include hover-focus {
+			color: $white-normal;
+			background-color: $bg-dark-primary;
+		}
+
+		&:active {
+			color: $white-normal;
+			background-color: $bg-dark-primary;
+		}
+	}
+
+	&:focus {
+		z-index: 3;
+	}
+}
+
+.list-group-item + .list-group-item-action {
+	border-top: 1px solid transparent;
+}
+
+.list-group-item {
+	@include lightTheme(false) {
+		color: $list-group-color;
+		background-color: $list-group-bg;
+
+		&.disabled,
+		&:disabled {
+			color: $list-group-disabled-color;
+			background-color: $list-group-disabled-bg;
+		}
+
+		&.active {
+			color: $list-group-active-color;
+			background-color: $list-group-active-bg;
+			border-color: $list-group-active-border-color;
+		}
+	}
+
+	@include darkTheme {
+		color: $white-normal;
+		background-color: $bg-dark-secondary;
+
+		&.disabled,
+		&:disabled {
+			color: $white-muted;
+			background-color: $bg-dark-secondary;
+		}
+
+		&.active {
+			color: $black-strong;
+			background-color: $bg-light-tertiary;
+			border-color: $bg-light-tertiary;
+		}
+	}
+}

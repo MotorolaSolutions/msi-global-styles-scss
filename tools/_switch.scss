@@ -1,0 +1,83 @@
+@mixin switch-size($width, $height, $dotSize, $dotSpacing, $marginY) {
+	margin-top: remsize($marginY);
+	width: remsize($width);
+	height: remsize($height);
+
+	~ .form-check-label {
+		&::before {
+			margin-top: remsize($marginY);
+			width: remsize($width);
+			height: remsize($height);
+			border-radius: remsize($height / 2);
+		}
+
+		&::after {
+			margin-top: remsize($marginY);
+			width: remsize($dotSize);
+			height: remsize($dotSize);
+			border-radius: remsize($dotSize / 2);
+			top: remsize($dotSpacing);
+			left: remsize($dotSpacing);
+		}
+	}
+
+	&:checked {
+		~ .form-check-label::after {
+			left: remsize($width - $dotSpacing - $dotSize);
+		}
+	}
+}
+
+@mixin switch-color(
+	$frameBackground,
+	$dotBackground,
+	$checkedDotBackground,
+	$disabledBorder,
+	$disabledBackground,
+	$disabledDotBackground,
+	$labelColor,
+	$checkedLabelColor,
+	$disabledLabelColor
+) {
+	~ .form-check-label {
+		color: $labelColor;
+		&::before {
+			background-color: $frameBackground;
+		}
+
+		&::after {
+			background-color: $dotBackground;
+		}
+	}
+
+	&:focus {
+		~ .form-check-label {
+			&::before {
+				@include input-focus(false);
+			}
+		}
+	}
+
+	&:checked {
+		~ .form-check-label {
+			color: $checkedLabelColor;
+			&::after {
+				background-color: $checkedDotBackground;
+			}
+		}
+	}
+
+	&:disabled {
+		~ .form-check-label {
+			color: $disabledLabelColor;
+			&::before {
+				background-color: $disabledBackground;
+				border-color: $disabledBorder;
+			}
+
+			&::after {
+				background-color: $disabledDotBackground;
+			}
+		}
+	}
+}

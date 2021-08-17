@@ -1,0 +1,70 @@
+@import 'common';
+
+.ngx-datatable {
+	@include table;
+
+	.datatable-header {
+		@include table-thead;
+	}
+
+	.datatable-header-cell {
+		@include table-thead-th;
+		@include table-th;
+		@include table-thead-border-bottom;
+	}
+
+	.empty-row,
+	.datatable-body,
+	.datatable-footer {
+		@include table-tbody;
+	}
+
+	.datatable-body-row.active {
+		@include table-tr-selected;
+	}
+
+	.empty-row,
+	.datatable-body-cell,
+	.datatable-header-cell {
+		@include table-td-th;
+	}
+
+	.datatable-body-cell {
+		@include table-td;
+	}
+
+	// Override native ngx-bootstrap cell styles to simulate vertical align middle
+	.datatable-body {
+		.datatable-body-cell {
+			display: inline-flex;
+			align-items: center;
+		}
+	}
+
+	.datatable-body-row {
+		@include table-tbody-tr;
+	}
+
+	.datatable-footer-inner {
+		@include table-tfoot-border-top;
+	}
+
+	.datatable-row-even {
+		@include table-tr-even;
+	}
+
+	&.ngx-datatable-hover {
+		.datatable-body-row:hover {
+			@include table-tr-hover;
+		}
+	}
+
+	// width 100% to allow text-align property to work.
+	.datatable-body-cell-label {
+		width: 100%;
+	}
+
+	.empty-row {
+		text-align: center;
+	}
+}

@@ -1,0 +1,159 @@
+@mixin table {
+	border-width: 0;
+}
+
+@mixin table-thead {
+	@include responsiveFont($type-p-sm, false);
+}
+
+@mixin table-thead-th {
+	vertical-align: bottom;
+
+	&:not(.small-padding) {
+		padding-top: $table-padding-md;
+		padding-bottom: $table-padding-md;
+	}
+}
+
+@mixin table-tbody {
+	@include responsiveFont($type-p-xs);
+}
+
+@mixin table-tr-expanded {
+	@include lightTheme {
+		border-bottom-color: transparent;
+	}
+
+	@include darkTheme {
+		border-bottom-color: transparent;
+	}
+}
+
+@mixin table-tr-selected {
+	@include lightTheme {
+		background-color: rgba($link-color, 0.1);
+	}
+
+	@include darkTheme {
+		background-color: rgba($link-color-inverted, 0.1);
+	}
+}
+
+@mixin table-tr-show {
+	@include lightTheme {
+		background-color: $black-05;
+	}
+
+	@include darkTheme {
+		background-color: $white-05;
+	}
+}
+
+@mixin table-td-th {
+	padding: $table-padding-sm;
+
+	&.no-grow {
+		width: 52px;
+	}
+
+	&:first-child:not(.small-padding) {
+		padding-left: $table-padding-md;
+	}
+}
+
+@mixin table-td {
+	height: 48px;
+
+	&.small-padding {
+		padding-top: 4px;
+		padding-bottom: 4px;
+	}
+}
+
+@mixin table-th {
+	font-weight: $font-weight-normal;
+
+	@include lightTheme {
+		color: $black-strong;
+	}
+
+	@include darkTheme {
+		color: $white-strong;
+	}
+}
+
+@mixin table-tbody-tr {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+
+	@include lightTheme {
+		border-color: $black-10;
+	}
+
+	@include darkTheme {
+		border-color: $white-10;
+	}
+}
+
+@mixin table-thead-border-bottom {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+
+	@include lightTheme {
+		border-color: $black-60;
+	}
+
+	@include darkTheme {
+		border-color: $white-60;
+	}
+}
+
+@mixin table-tfoot-border-top {
+	border-bottom-width: 0;
+	border-top-width: 1px;
+	border-top-style: solid;
+
+	@include lightTheme {
+		border-color: $black-60;
+	}
+
+	@include darkTheme {
+		border-color: $white-60;
+	}
+}
+
+@mixin table-tr-even {
+	@include lightTheme {
+		background-color: $black-02;
+	}
+	@include darkTheme {
+		background-color: $white-02;
+	}
+}
+
+@mixin table-tr-hover {
+	@include lightTheme {
+		box-shadow: map-get(map-get($shadows, sm), light);
+	}
+
+	@include darkTheme {
+		box-shadow: map-get(map-get($shadows, sm), dark);
+	}
+}
+
+@mixin table-scroll-shadow($color) {
+	$shadow-left: inset 16px 0 16px -16px $color;
+	$shadow-right: inset -16px 0 16px -16px $color;
+
+	&.can-scroll-left {
+		box-shadow: $shadow-left;
+	}
+
+	&.can-scroll-right {
+		box-shadow: $shadow-right;
+	}
+
+	&.can-scroll-left.can-scroll-right {
+		box-shadow: $shadow-left, $shadow-right;
+	}
+}

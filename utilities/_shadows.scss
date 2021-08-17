@@ -1,0 +1,11 @@
+@each $size, $shadow in $shadows {
+	.shadow#{map-get($shadow, postfix)} {
+		@include lightTheme {
+			box-shadow: map-get($shadow, light) !important;
+		}
+
+		@include darkTheme {
+			box-shadow: map-get($shadow, dark) !important;
+		}
+	}
+}

@@ -1,0 +1,527 @@
+@import 'common';
+@import 'bootstrap/scss/forms';
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+.sublabel {
+	font-style: italic;
+}
+
+label,
+.label,
+.form-text,
+.sublabel {
+	@include responsiveFont($type-p-sm, false);
+	@include media-breakpoint-up(sm) {
+		@include responsiveFont($type-p-xs);
+	}
+}
+
+.label-lg {
+	@include responsiveFont($type-p-sm, false);
+}
+
+label:not(.form-check-label) {
+	@include lightTheme {
+		color: $black-strong;
+	}
+
+	@include darkTheme {
+		color: $white-strong;
+	}
+}
+
+legend {
+	@include responsiveFont($type-h5);
+
+	@include lightTheme {
+		color: $black-strong;
+	}
+
+	@include darkTheme {
+		color: $white-strong;
+	}
+}
+
+textarea {
+	resize: none;
+}
+
+.form-control {
+	@include lightTheme {
+		color: $input-color;
+		background-color: $input-bg;
+		border-color: $input-border-color;
+	}
+
+	@include darkTheme {
+		color: $white-strong;
+		background-color: $text-black;
+		border-color: $white-25;
+	}
+
+	@include media-breakpoint-up(sm) {
+		&:not(.form-control-lg):not(.form-control-sm) {
+			@include responsiveFont($type-p-sm, false);
+			height: $input-height - remsize(8);
+			padding-top: $input-padding-y - remsize(2);
+			padding-bottom: $input-padding-y - remsize(1);
+		}
+	}
+
+	// stylelint-disable no-descending-specificity
+
+	&:hover,
+	&.hover {
+		&:not(:focus):not(.focus):not(.disabled):not(:disabled) {
+			@include lightTheme {
+				border-color: $black-60;
+			}
+
+			@include darkTheme {
+				border-color: $white-60;
+			}
+		}
+	}
+
+	@include input-focus-selector(false);
+
+	&:active,
+	&.active {
+		@include lightTheme {
+			border-color: $dark-blue;
+		}
+
+		@include darkTheme {
+			border-color: $light-blue;
+		}
+	}
+
+	&:disabled,
+	&.disabled {
+		cursor: not-allowed;
+
+		@include lightTheme {
+			color: $black-muted;
+			background-color: $black-10;
+		}
+
+		@include darkTheme {
+			color: $white-muted;
+			background-color: $white-10;
+		}
+	}
+
+	&::placeholder {
+		@include lightTheme {
+			color: $input-placeholder-color;
+		}
+
+		@include darkTheme {
+			color: $white-muted;
+		}
+	}
+	// stylelint-enable
+
+	&.calendar {
+		padding-right: $input-height-inner;
+		background-repeat: no-repeat;
+		background-position: center right remsize(9);
+		background-size: auto remsize(24);
+
+		@include lightTheme {
+			@include calendarIconBackground($black-80);
+		}
+
+		@include darkTheme {
+			@include calendarIconBackground($white-80);
+		}
+
+		&:disabled {
+			@include lightTheme {
+				@include calendarIconBackground($black-25);
+			}
+
+			@include darkTheme {
+				@include calendarIconBackground($white-25);
+			}
+		}
+	}
+}
+
+@each $state, $data in $custom-form-validation-states {
+	@include custom-form-validation-state(
+		$state,
+		map-get($data, color),
+		map-get($data, colorDark),
+		map-get($data, borderColor),
+		map-get($data, borderColorDark),
+		map-get($data, icon),
+		map-get($data, iconDark)
+	);
+}
+
+// Checkboxes and radios
+
+.form-check {
+	line-height: 1rem; // fix for IE :before element positioning
+}
+
+// stylelint-disable no-descending-specificity
+.form-check-input {
+	opacity: 0;
+
+	~ .form-check-label:before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		border-style: solid;
+		border-width: 1px;
+	}
+
+	&[type='radio'] {
+		~ .form-check-label:before {
+			border-radius: 100%;
+		}
+
+		&:checked:not(:focus):not(:disabled) ~ .form-check-label:before {
+			@include lightTheme {
+				border-color: $black-80;
+			}
+			@include darkTheme {
+				border-color: $white-80;
+			}
+		}
+	}
+
+	&[type='checkbox'] {
+		&:checked,
+		&:indeterminate {
+			~ .form-check-label:after {
+				content: '';
+				display: block;
+				background: transparent;
+				border-width: 0 0 remsize(2) remsize(2);
+				position: absolute;
+				border-style: solid;
+			}
+		}
+		&:checked ~ .form-check-label:after {
+			transform: rotate(-45deg);
+		}
+		&:indeterminate ~ .form-check-label:after {
+			border-left-width: 0;
+		}
+	}
+
+	&[type='radio']:checked ~ .form-check-label:after {
+		content: '';
+		display: block;
+		position: absolute;
+		border-radius: 100%;
+	}
+
+	@include lightTheme {
+		@include check-color(
+			$black-60,
+			transparent,
+			$black-05,
+			$black-10,
+			$black-95,
+			$black-95,
+			$white-95,
+			$black-10
+		);
+	}
+
+	@include darkTheme {
+		@include check-color(
+			$white-60,
+			transparent,
+			$white-05,
+			$white-10,
+			$white-95,
+			$white-95,
+			$black-95,
+			$white-10
+		);
+	}
+
+	@include lightTheme {
+		&:not(:disabled) {
+			~ .form-check-label {
+				color: $body-color;
+			}
+
+			&:checked,
+			&[type='checkbox']:indeterminate {
+				~ .form-check-label {
+					color: $black-95;
+				}
+			}
+		}
+	}
+
+	@include darkTheme {
+		&:disabled ~ .form-check-label {
+			color: $white-muted;
+		}
+
+		&:not(:disabled) {
+			& ~ .form-check-label {
+				color: $white-strong;
+			}
+
+			&[type='checkbox']:indeterminate {
+				~ .form-check-label {
+					color: $white-strong;
+				}
+			}
+		}
+	}
+
+	&:focus ~ .form-check-label:before {
+		@include input-focus(false);
+	}
+}
+
+.form-check-input,
+.form-check-lg .form-check-input {
+	@include check-size(24, 24, $form-check-input-margin-y);
+	@include checkbox-size(15, 7, 6, 5, $form-check-input-margin-y);
+	@include radio-size(14, 5, $form-check-input-margin-y);
+}
+
+.form-check-input,
+.form-check-lg .form-check-input,
+.form-check-switch,
+.form-check-lg .form-check-switch {
+	~ .form-check-label {
+		@include responsiveFont($type-p-md, false);
+		padding-top: remsize(11);
+		padding-bottom: remsize(11);
+	}
+}
+
+@include media-breakpoint-up(sm) {
+	.form-check {
+		padding-left: remsize(24);
+	}
+
+	.form-check-input {
+		margin-left: remsize(24) * -1;
+		margin-top: $form-check-input-margin-y-sm;
+		@include check-size(16, 16, $form-check-input-margin-y-sm);
+		@include checkbox-size(10, 5, 4, 3, $form-check-input-margin-y-sm);
+		@include radio-size(8, 4, $form-check-input-margin-y-sm);
+	}
+
+	.form-check-switch ~ .form-check-label,
+	.form-check-input ~ .form-check-label {
+		padding-top: 6px;
+		padding-bottom: 5px;
+		@include responsiveFont($type-p-sm, false);
+	}
+
+	.form-check-inline .form-check-input {
+		margin-right: 8px;
+	}
+}
+
+.form-check-lg {
+	padding-left: $form-check-input-gutter;
+	.form-check-input {
+		margin-left: $form-check-input-gutter * -1;
+	}
+
+	&.form-check-inline .form-check-input {
+		margin-right: $form-check-inline-input-margin-x;
+	}
+}
+
+.form-check-inline {
+	padding-left: 0;
+	.form-check-input {
+		margin-left: 0;
+	}
+}
+
+.form-check-input-secondary[type='checkbox']:not(:disabled) {
+	&:checked,
+	&:indeterminate {
+		~ .form-check-label {
+			&:before {
+				@include lightTheme {
+					background-color: transparent;
+				}
+				@include darkTheme {
+					background-color: transparent;
+				}
+			}
+			&:after {
+				@include lightTheme {
+					border-color: $black-95;
+				}
+				@include darkTheme {
+					border-color: $white-95;
+				}
+			}
+		}
+	}
+}
+
+.form-check-standalone,
+.form-check-switch-standalone {
+	display: inline-flex;
+	align-self: center;
+	vertical-align: middle;
+	padding: 0;
+}
+
+.form-check-standalone > .form-check-input {
+	position: static;
+	margin: 0;
+
+	~ .form-check-label {
+		&:before,
+		&:after {
+			margin-top: 0;
+		}
+	}
+}
+
+$form-check-input-gutter-sm: remsize(24);
+
+.form-check-standalone {
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+.form-check-standalone.form-check-lg,
+.form-check-standalone {
+	flex-basis: $form-check-input-gutter;
+}
+
+@include media-breakpoint-up(sm) {
+	.form-check-standalone {
+		flex-basis: $form-check-input-gutter-sm;
+	}
+}
+
+.form-check-inline-switch {
+	display: inline-flex;
+	margin-right: 12px;
+}
+
+$form-check-switch-gutter: remsize(14);
+
+.form-check-switch {
+	opacity: 0;
+	position: absolute;
+	left: 0;
+
+	~ .form-check-label {
+		padding-left: $form-check-switch-gutter;
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			display: block;
+		}
+
+		&::before {
+			top: 0;
+			left: 0;
+			border: remsize(1) solid transparent;
+		}
+
+		&::after {
+			left: remsize(1);
+			transition: all $transition-duration-fast ease-in-out;
+		}
+	}
+
+	@include lightTheme {
+		@include switch-color(
+			$black-10,
+			$white-95,
+			$black-95,
+			$black-05,
+			$black-10,
+			$black-10,
+			$black-normal,
+			$black-strong,
+			$black-muted
+		);
+	}
+
+	@include darkTheme {
+		@include switch-color(
+			$white-60,
+			$black-95,
+			$white-95,
+			$white-05,
+			$white-10,
+			$white-10,
+			$white-normal,
+			$white-strong,
+			$white-muted
+		);
+	}
+}
+
+.form-check-switch,
+.form-check-lg .form-check-switch {
+	@include switch-size(38, 20, 16, 2, 14);
+}
+
+@include media-breakpoint-up(sm) {
+	.form-check-switch {
+		@include switch-size(30, 16, 14, 1, 8);
+	}
+}
+
+.form-check-switch-standalone > .form-check-switch {
+	position: static;
+	margin: 0;
+
+	~ .form-check-label {
+		margin: 0;
+		padding-left: 0;
+		&:before,
+		&:after {
+			margin-top: 0;
+		}
+	}
+}
+// stylelint-enable
+
+.form-check-switch-standalone.form-check-lg,
+.form-check-switch-standalone {
+	flex-basis: $form-check-input-gutter + $form-check-switch-gutter;
+}
+
+@include media-breakpoint-up(sm) {
+	.form-check-switch-standalone {
+		flex-basis: $form-check-input-gutter-sm + $form-check-switch-gutter;
+	}
+}
+
+.form-inline.pagination {
+	input {
+		width: 58px;
+	}
+	.dropdown-toggle,
+	.dropdown-menu {
+		min-width: 74px;
+	}
+}

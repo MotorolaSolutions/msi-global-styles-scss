@@ -1,0 +1,252 @@
+@mixin validation-state-focus($color) {
+	@include lightTheme {
+		$color-default: map-get($alert-colors-dark, $color);
+		box-shadow: 0 0 0 2px rgba($color-default, 0.5);
+		border-color: $color-default;
+	}
+	@include darkTheme {
+		$color-inverse: map-get($alert-colors, $color);
+		box-shadow: 0 0 0 2px rgba($color-inverse, 0.5);
+		border-color: $color-inverse;
+	}
+}
+
+@mixin custom-form-validation-state(
+	$state,
+	$color,
+	$color-dark,
+	$border-color,
+	$border-color-dark,
+	$icon,
+	$iconDark
+) {
+	.#{$state}-feedback {
+		display: none;
+		width: 100%;
+		margin-top: $form-feedback-margin-top;
+		@include responsiveFont($type-p-sm, false);
+		@include media-breakpoint-up(sm) {
+			@include responsiveFont($type-p-xs);
+		}
+
+		@include lightTheme {
+			color: $color;
+		}
+
+		@include darkTheme {
+			color: $color-dark;
+		}
+	}
+
+	/* stylelint-disable */
+	.form-control {
+		// the below produces the following output for valid state: &.is-valid, .was-validated &:valid
+		#{'&.is-'
+		+ $state
+		+ if($state == valid, ', .was-validated &:valid', '')
+		+ if($state == invalid, ', .was-validated &:invalid', '')
+		} {
+			padding-right: $input-height-inner;
+			background-repeat: no-repeat;
+			background-position: center right remsize(16);
+			background-size: auto remsize(24);
+
+			@include lightTheme {
+				background-image: $icon;
+				&,
+				&:hover:not(:focus):not(.focus):not(.disabled):not(:disabled),
+				&.hover:not(:focus):not(.focus):not(.disabled):not(:disabled) {
+					border-color: $border-color;
+				}
+				&:focus {
+					box-shadow: 0 0 0 2px rgba($border-color, 0.5);
+				}
+			}
+
+			@include darkTheme {
+				background-image: $iconDark;
+				&,
+				&:hover:not(:focus):not(.focus):not(.disabled):not(:disabled),
+				&.hover:not(:focus):not(.focus):not(.disabled):not(:disabled) {
+					border-color: $border-color-dark;
+				}
+				&:focus {
+					box-shadow: 0 0 0 2px rgba($border-color-dark, 0.5);
+				}
+			}
+
+			~ .#{$state}-feedback {
+				display: block;
+			}
+		}
+	}
+}
+
+@mixin check-color(
+	$border,
+	$background,
+	$disabledBorder,
+	$disabledBackground,
+	$checkedBorder,
+	$checkedBackground,
+	$icon,
+	$disabledIcon
+) {
+	~ .form-check-label:before {
+		background-color: $background;
+		border-color: $border;
+	}
+
+	&:checked,
+	&[type='checkbox']:indeterminate {
+		~ .form-check-label:before {
+			border-color: $checkedBorder;
+		}
+	}
+
+	&:disabled ~ .form-check-label:before {
+		background-color: $disabledBackground;
+		border-color: $disabledBorder;
+	}
+
+	&[type='checkbox'] {
+		&:checked,
+		&:indeterminate {
+			&:not(:disabled) ~ .form-check-label {
+				&:before {
+					background-color: $checkedBackground;
+				}
+				&:after {
+					border-color: $icon;
+				}
+			}
+			&:disabled ~ .form-check-label:after {
+				border-color: $disabledIcon;
+			}
+		}
+	}
+
+	&[type='radio'] {
+		&:checked ~ .form-check-label:after {
+			background-color: $checkedBorder;
+		}
+
+		&.disabled,
+		&[disabled] {
+			&:checked ~ .form-check-label:after {
+				background-color: $disabledBorder;
+			}
+		}
+	}
+}
+
+@mixin check-size($width, $height, $marginY) {
+	&,
+	~ .form-check-label:before {
+		margin-top: $marginY;
+		width: remsize($width);
+		height: remsize($height);
+	}
+	~ .form-check-label:after {
+		margin-top: $marginY;
+	}
+}
+
+@mixin checkbox-size($iconWidth, $iconHeight, $iconTop, $iconLeft, $marginY) {
+	&[type='checkbox'] {
+		&:checked,
+		&:indeterminate {
+			~ .form-check-label:after {
+				width: remsize($iconWidth);
+				height: remsize($iconHeight);
+				top: remsize($iconTop);
+				left: remsize($iconLeft);
+			}
+		}
+	}
+}
+
+@mixin radio-size($iconSize, $iconPosition, $marginY) {
+	&[type='radio'] ~ .form-check-label:after {
+		width: remsize($iconSize);
+		height: remsize($iconSize);
+		top: remsize($iconPosition);
+		left: remsize($iconPosition);
+	}
+}
+
+@mixin input-focus($at-root: true) {
+	@if $at-root {
+		@at-root body.user-is-tabbing & {
+			border: $input-des-focus-border;
+			box-shadow: $input-des-focus-box-shadow;
+		}
+	} @else {
+		border: $input-des-focus-border;
+		box-shadow: $input-des-focus-box-shadow;
+	}
+}
+
+@mixin input-focus-selector($at-root: true) {
+	@if $at-root {
+		@at-root body.user-is-tabbing &:focus,
+		&.focus {
+			@include input-focus(false);
+		}
+		&:focus {
+			outline: none;
+		}
+	} @else {
+		&.focus,
+		&:focus {
+			outline: none;
+			@include input-focus(false);
+		}
+	}
+}
+
+@mixin calendarIconBackground($iconColor) {
+	background-image: str-replace(
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='#{$iconColor}' class='fill-primary' fill-rule='nonzero' d='M10.076 10.999V22.76h12.839V10.999H10.076zM9 9.923h14.914v13.914H9V9.923zM11.768 9h1.076v3.229h-1.076V9zm8.302 0h1.077v3.229H20.07V9zM9 14.228V13.15h14.914v1.077H9z'/%3E%3C/svg%3E"),
+		'#',
+		'%23'
+	);
+}
+
+@mixin caret($color: black, $direction: down, $additionalProps: ()) {
+	&::after {
+		content: '';
+		width: $caret-width;
+		height: $caret-width;
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto $caret-spacing;
+		background-image: str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='#{$color}' class='fill-primary' fill-rule='evenodd' d='M9 10h14.703l-7.304 10.667z'/%3E%3C/svg%3E"),
+			'#',
+			'%23'
+		);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;
+		transition: transform ease-in-out $transition-duration-fast;
+
+		@if $direction == down {
+			transform: none;
+		} @else if $direction == up {
+			transform: rotate(180deg);
+		} @else if $direction == right {
+			transform: rotate(270deg);
+		} @else if $direction == left {
+			transform: rotate(90deg);
+			right: auto;
+			left: 0;
+		}
+
+		@each $property, $value in $additionalProps {
+			#{$property}: $value;
+		}
+	}
+}

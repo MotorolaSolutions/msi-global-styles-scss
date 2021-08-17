@@ -1,0 +1,185 @@
+@import 'common';
+@import 'bootstrap/scss/badge';
+
+.badge {
+	position: relative;
+	height: $badge-height;
+	min-width: $badge-height;
+	padding: 0 #{map-get($spacers, '12p') - 1px}; // 1px for the border
+	border: 1px solid transparent;
+	border-radius: remsize(26);
+	text-transform: uppercase;
+	font-family: $font-family-sans-serif;
+	font-size: $btn-font-size;
+	line-height: remsize(#{$badge-height - 2px}); // 2px for top and bottom borders
+	letter-spacing: remsize(1.29);
+	white-space: $btn-white-space;
+	vertical-align: middle;
+}
+
+.badge-sm {
+	height: $badge-height-sm;
+	min-width: $badge-height-sm;
+	padding: 0 #{map-get($spacers, '8p') - 1px};
+	border-radius: remsize($badge-height-sm);
+	font-size: $btn-font-size-sm;
+	line-height: remsize(#{$badge-height-sm - 2px});
+	letter-spacing: remsize(1.11);
+}
+
+.badge-xs {
+	height: $badge-height-xs;
+	min-width: $badge-height-xs;
+	padding: 0 #{map-get($spacers, '4p') - 1px};
+	border-radius: remsize($badge-height-xs);
+	font-size: remsize(10);
+	line-height: remsize(#{$badge-height-xs - 2px});
+	letter-spacing: normal;
+}
+
+.badge-primary {
+	@include lightTheme {
+		background-color: $black-strong;
+		border-color: $black-strong;
+		color: $white-strong;
+	}
+	@include darkTheme {
+		background-color: $white-strong;
+		border-color: $white-strong;
+		color: $black-strong;
+	}
+}
+
+.badge-secondary {
+	@include lightTheme {
+		border-color: $black-40;
+		color: $black-strong;
+	}
+
+	@include darkTheme {
+		border-color: $white-40;
+		color: $white-strong;
+	}
+}
+
+.badge-tertiary {
+	background-color: $dark-gray;
+	border-color: $dark-gray;
+	color: $black-strong;
+}
+
+$variations: success, error, warning, strong-warning, info;
+@each $variation in $variations {
+	&.badge-#{$variation} {
+		background-color: map-get($alert-colors, $variation);
+		border-color: map-get($alert-colors, $variation);
+		color: $deep-black;
+	}
+}
+
+.badge-error {
+	color: $black;
+}
+
+a.badge,
+button.badge {
+	@include tap-area-selector();
+	@include input-focus-selector();
+	&.hover,
+	&:hover,
+	&:focus,
+	&.focus {
+		&.badge-primary {
+			@include lightTheme {
+				background-color: combineOverlays($white-muted, $black-strong);
+				color: combineOverlays($black-muted, $white-strong);
+			}
+			@include darkTheme {
+				background-color: combineOverlays($black-muted, $white-strong);
+				color: combineOverlays($white-muted, $black-strong);
+			}
+		}
+		&.badge-secondary {
+			@include lightTheme {
+				background-color: $black-muted;
+				color: combineOverlays($white-muted, $black-strong);
+			}
+			@include darkTheme {
+				background-color: $white-muted;
+				color: combineOverlays($black-muted, $white-strong);
+			}
+		}
+		&.badge-tertiary {
+			@include lightTheme {
+				background-color: combineOverlays($black-muted, $dark-gray);
+				color: combineOverlays($white-muted, $black-strong);
+			}
+			@include darkTheme {
+				background-color: combineOverlays($white-muted, $dark-gray);
+				color: combineOverlays($black-muted, $black-strong);
+			}
+		}
+	}
+	&:hover,
+	&.hover {
+		&.badge-primary {
+			@include lightTheme {
+				border-color: combineOverlays($white-muted, $black-strong);
+			}
+			@include darkTheme {
+				border-color: combineOverlays($black-muted, $white-strong);
+			}
+		}
+		&.badge-secondary {
+			@include lightTheme {
+				border-color: combineOverlays($black-muted, $black-40);
+			}
+			@include darkTheme {
+				border-color: combineOverlays($white-muted, $white-40);
+			}
+		}
+		&.badge-tertiary {
+			@include lightTheme {
+				border-color: combineOverlays($black-muted, $dark-gray);
+			}
+			@include darkTheme {
+				border-color: combineOverlays($white-muted, $dark-gray);
+			}
+		}
+	}
+	&:hover:focus,
+	&:hover.focus,
+	&.hover:focus,
+	&.hover.focus {
+		border-color: $input-btn-focus-color;
+	}
+
+	$variations: success, error, warning, strong-warning, info;
+	@each $variation in $variations {
+		&.badge-#{$variation} {
+			&.hover,
+			&:hover,
+			&.focus,
+			&:focus {
+				background-color: map-get($alert-colors-dark, $variation);
+				color: $white;
+			}
+			&.hover,
+			&:hover {
+				border-color: map-get($alert-colors-dark, $variation);
+			}
+
+			@at-root body.user-is-tabbing &:focus,
+			&.focus { // stylelint-disable-line prettier/prettier
+				@include validation-state-focus($variation);
+			}
+
+			&:hover:focus,
+			&:hover.focus,
+			&.hover:focus,
+			&.hover.focus {
+				border-color: $input-btn-focus-color;
+			}
+		}
+	}
+}

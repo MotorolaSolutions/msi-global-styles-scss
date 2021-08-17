@@ -1,0 +1,18 @@
+.no-bottom-margin :last-child {
+	margin-bottom: 0 !important;
+}
+
+.px-15p,
+.pl-15p {
+	padding-left: $grid-gutter-width / 2;
+}
+
+.px-15p,
+.pr-15p {
+	padding-right: $grid-gutter-width / 2;
+}
+
+.mx-15p {
+	margin-left: $grid-gutter-width / 2;
+	margin-right: $grid-gutter-width / 2;
+}

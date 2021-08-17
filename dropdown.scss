@@ -1,0 +1,207 @@
+@import 'common';
+@import 'bootstrap/scss/dropdown';
+
+.dropdown-toggle {
+	.input-group-prepend &,
+	.input-group-append & {
+		position: relative;
+		z-index: 2;
+	}
+
+	&.form-control {
+		display: inline-flex;
+		position: relative;
+		padding-right: $input-height-inner;
+
+		&:after {
+			opacity: 0.8;
+		}
+
+		@include lightTheme {
+			color: $black-normal;
+			@include caret($black);
+		}
+		@include darkTheme {
+			color: $white-normal;
+			@include caret($white);
+		}
+
+		&:disabled,
+		&.disabled {
+			&:after {
+				opacity: 0.25;
+			}
+		}
+
+		&[aria-expanded='true'] {
+			&:after {
+				transform: rotate(180deg);
+			}
+		}
+	}
+}
+
+.dropdown-menu {
+	max-height: 300px;
+	overflow: auto;
+	@include responsiveFont($type-p-md, false);
+	border: none;
+	border-radius: $dropdown-border-radius;
+
+	@include lightTheme {
+		color: $dropdown-color;
+		background-color: $white;
+		box-shadow: map-get(map-get($shadows, 'xl'), 'light');
+	}
+
+	@include darkTheme {
+		color: $white-normal;
+		background-color: $dark-black;
+		box-shadow: map-get(map-get($shadows, 'xl'), 'dark');
+	}
+
+	@include media-breakpoint-up(sm) {
+		&:not(.dropdown-menu-lg) {
+			@include responsiveFont($type-p-sm, false);
+			.dropdown-item:not(.form-check) {
+				padding-top: $dropdown-item-padding-y - remsize(2);
+				padding-bottom: $dropdown-item-padding-y - remsize(1);
+			}
+			.dropdown-header {
+				@include responsiveFont($type-p-xs);
+			}
+		}
+	}
+}
+
+.dropdown-item {
+	@include lightTheme {
+		color: $dropdown-color;
+	}
+
+	@include darkTheme {
+		color: $white-normal;
+	}
+
+	&:hover,
+	&:active,
+	&.selected {
+		@include lightTheme {
+			color: $dropdown-color;
+			background-color: $dropdown-link-hover-bg;
+		}
+
+		@include darkTheme {
+			color: $white-strong;
+			background-color: $white-05;
+		}
+	}
+
+	&.inactive {
+		&:focus,
+		&:hover {
+			background-color: transparent;
+		}
+	}
+
+	&.form-check {
+		padding-left: $dropdown-item-padding-x + $form-check-input-gutter;
+		padding-top: 0;
+		padding-bottom: 0;
+		@include media-breakpoint-up(sm) {
+			&:not(.form-check-lg) {
+				padding-top: 4px;
+				padding-bottom: 4px;
+			}
+		}
+		.form-check-label {
+			&:before,
+			&:after {
+				margin-left: $dropdown-item-padding-x;
+				@include media-breakpoint-up(sm) {
+					margin-top: 12px;
+				}
+			}
+		}
+	}
+}
+
+.dropdown-header {
+	padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+	padding-bottom: map-get($spacers, '1p');
+
+	@include lightTheme {
+		color: $body-color;
+	}
+	@include darkTheme {
+		color: $body-color-inverted;
+	}
+}
+
+.dropdown-item-text.form-control {
+	padding-right: 40px;
+	height: auto;
+
+	&:not(:focus) {
+		border-color: transparent;
+	}
+
+	&:focus {
+		box-shadow: none;
+	}
+
+	& + .close {
+		position: absolute;
+		right: 4px;
+		top: 6px;
+	}
+}
+
+.form-control + .dropdown-menu {
+	&,
+	&[x-placement^='top'],
+	&[x-placement^='right'],
+	&[x-placement^='bottom'],
+	&[x-placement^='left'] {
+		right: 0;
+	}
+}
+
+$additionalProps: (
+	margin-right: 1.25rem,
+);
+
+.btn.dropdown-toggle {
+	padding-right: map-get($spacers, '48p') - 1px;
+	@include lightTheme {
+		@include caret($black, $additionalProps: $additionalProps);
+	}
+	@include darkTheme {
+		@include caret($white, $additionalProps: $additionalProps);
+	}
+	&:hover {
+		@include lightTheme {
+			@include caret($white, $additionalProps: $additionalProps);
+		}
+		@include darkTheme {
+			@include caret($black, $additionalProps: $additionalProps);
+		}
+	}
+	&[aria-expanded='true'] {
+		@include lightTheme {
+			@include caret($white, up, $additionalProps);
+		}
+		@include darkTheme {
+			@include caret($white, up, $additionalProps);
+		}
+	}
+	&[aria-expanded='true']:hover {
+		@include darkTheme {
+			@include caret($black, up, $additionalProps);
+		}
+	}
+
+	& + .dropdown-menu {
+		min-width: auto;
+	}
+}

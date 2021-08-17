@@ -1,0 +1,175 @@
+$font-size-base-value: 16;
+$headings-color-inverted: $white-strong;
+$body-color-inverted: $white-normal;
+$link-color-inverted: $light-blue;
+$font-family-h1: UniversLTStd-Cn, Arial, sans-serif;
+$font-family-h2: UniversLTStd, Arial, sans-serif;
+$font-family-sans-serif: Arial, sans-serif;
+$text-muted-inverted: $white-muted;
+
+$type-h1: (
+	xs: (
+		size: 28,
+		height: 34,
+		transform: uppercase,
+		family: $font-family-h1,
+		spacing: normal,
+	),
+	md: (
+		size: 40,
+		height: 46,
+	),
+	lg: (
+		size: 45,
+		height: 54,
+	),
+);
+
+$type-h1-nav: (
+	xs: (
+		size: 12,
+		height: 18,
+		spacing: 0.2,
+		transform: none,
+		family: $font-family-sans-serif,
+		weight: normal,
+	),
+	md: (
+		size: 16,
+		height: 26,
+	),
+);
+
+$type-h2: (
+	xs: (
+		size: 24,
+		height: 36,
+		family: $font-family-h2,
+		spacing: normal,
+	),
+	md: (
+		size: 28,
+		height: 42,
+	),
+	lg: (
+		size: 32,
+		height: 45,
+		spacing: -0.5,
+	),
+);
+
+$type-h3: (
+	xs: (
+		size: 19,
+		height: 27,
+		spacing: normal,
+	),
+	md: (
+		size: 21,
+		height: 31.5,
+	),
+	lg: (
+		size: 23,
+		height: 35,
+	),
+);
+
+$type-h4: (
+	xs: (
+		size: 16,
+		height: 26,
+		spacing: 0.2,
+		weight: bold,
+	),
+);
+
+$type-h5: (
+	xs: (
+		size: 14,
+		height: 21,
+		spacing: 0.3,
+		weight: bold,
+	),
+	lg: (
+		spacing: 0.4,
+	),
+);
+
+$type-h6: (
+	xs: (
+		size: 12,
+		height: 18,
+		spacing: 2,
+		transform: uppercase,
+	),
+);
+
+$type-p-xl: (
+	xs: (
+		size: 21,
+		height: 31.5,
+		spacing: 0.4,
+	),
+	md: (
+		size: 23,
+		height: 34.5,
+	),
+	lg: (
+		height: 35,
+	),
+);
+
+$type-p-lg: (
+	xs: (
+		size: 19,
+		height: 27,
+		spacing: normal,
+	),
+	md: (
+		height: 28.5,
+	),
+	lg: (
+		height: 30,
+	),
+);
+
+$type-p-md: (
+	xs: (
+		size: 14,
+		height: 21,
+		spacing: normal,
+	),
+	md: (
+		size: 16,
+		height: 26,
+	),
+);
+
+$type-p-sm: (
+	xs: (
+		size: 12,
+		height: 18,
+		spacing: 0.4,
+	),
+	lg: (
+		size: 14,
+		height: 21,
+		spacing: 0.2,
+	),
+);
+
+$type-p-xs: (
+	xs: (
+		size: 12,
+		height: 18,
+		spacing: 0.5,
+	),
+);
+
+$type-caption: (
+	xs: (
+		size: 10,
+		height: 15,
+		spacing: 0.6,
+	),
+);

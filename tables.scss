@@ -1,0 +1,158 @@
+@import 'common';
+
+/* stylelint-disable no-descending-specificity */
+.table {
+	@include table;
+
+	thead {
+		@include table-thead;
+
+		th {
+			@include table-thead-th;
+		}
+	}
+
+	tbody,
+	tfoot {
+		@include table-tbody;
+	}
+
+	td,
+	th {
+		@include table-td-th;
+	}
+
+	td {
+		@include table-td;
+	}
+
+	th {
+		@include table-th;
+	}
+
+	tbody tr {
+		@include table-tbody-tr;
+	}
+
+	thead tr:last-child {
+		@include table-thead-border-bottom;
+	}
+
+	&-lg tbody {
+		td,
+		th {
+			padding: $table-padding-md $table-padding-sm;
+		}
+	}
+
+	&-xl tbody {
+		td,
+		th {
+			padding: $table-padding-lg $table-padding-sm;
+		}
+	}
+
+	tr.show,
+	tr.expanded,
+	tr.selected.expanded {
+		@include table-tr-show;
+	}
+
+	tr.expanded {
+		@include table-tr-expanded;
+	}
+
+	tr.selected {
+		@include table-tr-selected;
+	}
+
+	tfoot tr:first-child,
+	tr.summary {
+		@include table-tfoot-border-top;
+	}
+
+	.text-right.sortable {
+		padding-right: calc(24px + #{$table-padding-sm});
+	}
+}
+
+.table-bordered {
+	border-top-width: 1px;
+	border-top-style: solid;
+
+	@include lightTheme {
+		border-color: $black-10;
+	}
+
+	@include darkTheme {
+		border-color: $white-10;
+	}
+
+	td,
+	th {
+		padding: map-get($spacers, '8p') map-get($spacers, '16p');
+		height: 34px;
+		&:not(:last-child) {
+			@include lightTheme {
+				border-right: 1px solid $black-10;
+			}
+			@include darkTheme {
+				border-right: 1px solid $white-10;
+			}
+		}
+	}
+
+	&-lg {
+		td,
+		th {
+			height: 50px;
+		}
+
+		tbody,
+		tfoot {
+			@include responsiveFont($type-p-sm, false);
+		}
+	}
+}
+
+.table-borderless {
+	tbody tr,
+	thead tr:last-child {
+		border-bottom-width: 0;
+	}
+}
+
+.table .even,
+.table-striped tbody tr:not(.expanded):not(.collapse):not(.selected):nth-of-type(even) {
+	@include table-tr-even;
+}
+
+.table-hover {
+	tbody tr:hover:not(.expanded):not(.collapse) {
+		@include table-tr-hover;
+	}
+}
+
+.table-responsive {
+	position: relative;
+	display: block;
+	width: 100%;
+	box-shadow: none;
+	transition: box-shadow $transition-duration-fast ease-in-out;
+	padding-bottom: map-get($spacers, '8p');
+	overflow-x: auto;
+
+	.user-is-touching & {
+		overflow: hidden;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	@include lightTheme {
+		@include table-scroll-shadow($light-scroll-shadow-color);
+	}
+	@include darkTheme {
+		@include table-scroll-shadow($dark-scroll-shadow-color);
+	}
+}
+
+/* stylelint-enable */

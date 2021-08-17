@@ -1,0 +1,126 @@
+@import 'common';
+
+.filter-results {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	display: block;
+	margin-left: -map-get($spacers, '16p');
+	margin-right: -map-get($spacers, '16p');
+
+	@include media-breakpoint-up(lg) {
+		display: flex;
+		justify-content: space-between;
+		position: static;
+	}
+
+	&-top {
+		position: relative;
+		background-color: white;
+		box-shadow: map-get(map-get($shadows, 'xs'), light);
+		z-index: 1;
+		@include media-breakpoint-up(sm) {
+			box-shadow: none;
+		}
+	}
+
+	&-top,
+	&-bottom {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		padding: map-get($spacers, '12p') map-get($spacers, '16p');
+		@include media-breakpoint-up(sm) {
+			background-color: $bg-light-tertiary;
+		}
+	}
+
+	&-bottom {
+		flex-grow: 1;
+		@include media-breakpoint-down(md) {
+			&.headroom {
+				will-change: transform;
+				transition: transform $transition-duration-medium linear;
+			}
+			&.headroom--pinned {
+				transform: translateY(0%);
+			}
+			&.headroom--unpinned.headroom--active {
+				transform: translateY(-100%);
+			}
+		}
+	}
+
+	&-title {
+		display: flex;
+		flex-direction: column;
+		// stylelint-disable-next-line prettier/prettier
+		@include font(map-get($type-p-md, xs) ...);
+		margin-bottom: 0;
+		color: $text-black;
+		> :first-child {
+			font-weight: bold;
+		}
+
+		@include media-breakpoint-up(sm) {
+			display: inline-block;
+			@include responsiveFont($type-h3);
+			white-space: nowrap;
+			> :first-child {
+				font-weight: normal;
+				&:after {
+					display: 'inline';
+					content: ' - ';
+				}
+			}
+		}
+	}
+}
+
+.responsive-filters-header,
+.responsive-filters-footer {
+	display: none;
+}
+
+@include media-breakpoint-down(md) {
+	.responsive-filters {
+		@include overlay(fixed);
+		flex-direction: column;
+		background-color: $bg-light-primary;
+		display: none;
+		z-index: $zindex-fixed;
+		padding: 0;
+
+		&.show {
+			display: flex;
+		}
+
+		&-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-shrink: 0;
+			padding: map-get($spacers, '8p') map-get($spacers, '12p');
+		}
+
+		&-body {
+			overflow-y: scroll;
+			overflow-x: hidden;
+			flex-grow: 1;
+			padding-right: map-get($spacers, '16p');
+			padding-left: map-get($spacers, '16p');
+			padding-top: map-get($spacers, '24p');
+		}
+
+		&-footer {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: map-get($spacers, '12p');
+		}
+	}
+
+	body.filters-open {
+		overflow: hidden;
+	}
+}

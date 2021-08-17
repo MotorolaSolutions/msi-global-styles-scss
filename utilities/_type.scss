@@ -1,0 +1,73 @@
+@each $color, $value in $alert-colors-dark {
+	.text-#{$color} {
+		@include lightTheme {
+			color: $value !important;
+		}
+	}
+}
+
+@each $color, $value in $alert-colors {
+	.text-#{$color} {
+		@include darkTheme {
+			color: $value !important;
+		}
+	}
+}
+
+.text-normal {
+	@include lightTheme {
+		color: $body-color !important;
+	}
+
+	@include darkTheme {
+		color: $body-color-inverted !important;
+	}
+}
+
+.text-strong {
+	@include lightTheme {
+		color: $headings-color !important;
+	}
+
+	@include darkTheme {
+		color: $headings-color-inverted !important;
+	}
+}
+
+.text-muted {
+	@include lightTheme {
+		color: $text-muted !important;
+	}
+
+	@include darkTheme {
+		color: $text-muted-inverted !important;
+	}
+}
+
+.text-black {
+	&-normal {
+		color: $body-color !important;
+	}
+
+	&-strong {
+		color: $headings-color !important;
+	}
+
+	&-muted {
+		color: $text-muted !important;
+	}
+}
+
+.text-white {
+	&-normal {
+		color: $body-color-inverted !important;
+	}
+
+	&-strong {
+		color: $headings-color-inverted !important;
+	}
+
+	&-muted {
+		color: $text-muted-inverted !important;
+	}
+}

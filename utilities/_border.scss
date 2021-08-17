@@ -1,0 +1,75 @@
+@import 'bootstrap/scss/utilities/borders';
+
+.border-2 {
+	border: 2px solid $border-color !important;
+}
+
+.border-top-2 {
+	border-top: 2px solid $border-color !important;
+}
+
+.border-right-2 {
+	border-right: 2px solid $border-color !important;
+}
+
+.border-bottom-2 {
+	border-bottom: 2px solid $border-color !important;
+}
+
+.border-left-2 {
+	border-left-width: 2px solid $border-color !important;
+}
+
+@each $color, $value in $alert-colors-dark {
+	.border-#{$color} {
+		@include lightTheme {
+			border-color: $value !important;
+		}
+	}
+}
+
+@each $color, $value in $alert-colors {
+	.border-#{$color} {
+		@include darkTheme {
+			border-color: $value !important;
+		}
+	}
+}
+
+.border-normal {
+	@include lightTheme {
+		border-color: $black-25 !important;
+	}
+
+	@include darkTheme {
+		border-color: $white-25 !important;
+	}
+}
+
+.border-strong {
+	@include lightTheme {
+		border-color: $black-60 !important;
+	}
+
+	@include darkTheme {
+		border-color: $white-60 !important;
+	}
+}
+
+.border-muted {
+	@include lightTheme {
+		border-color: $black-10 !important;
+	}
+
+	@include darkTheme {
+		border-color: $white-10 !important;
+	}
+}
+
+.border-transparent {
+	border-color: transparent !important;
+}
+
+.no-bottom-border :last-child {
+	border-bottom-width: 0 !important;
+}

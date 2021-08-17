@@ -1,0 +1,55 @@
+@import 'common';
+@import 'bootstrap/scss/modal';
+
+// $modal-md > $grid-breakpoints[sm] which case modal overflow viewport
+.modal {
+	@include media-breakpoint-up(sm) {
+		padding-left: map-get($spacers, '16p');
+		padding-right: map-get($spacers, '16p');
+	}
+}
+
+.modal-header {
+	flex-direction: column-reverse;
+	padding-bottom: $spacer;
+
+	.close {
+		margin-bottom: 0;
+	}
+}
+
+.modal-title {
+	width: 100%;
+	padding-left: map-get($spacers, '16p');
+	padding-right: map-get($spacers, '16p');
+}
+
+.modal-body {
+	padding-left: map-get($spacers, '16p');
+	padding-right: map-get($spacers, '16p');
+}
+
+.modal-content {
+	border-width: 0;
+	box-shadow: map-get(map-get($shadows, xl), light);
+}
+
+@include media-breakpoint-down(xs) {
+	.modal-dialog {
+		width: 100%;
+		height: 100%;
+	}
+	.modal-dialog-centered.modal-dialog-scrollable .modal-content {
+		height: 100%;
+	}
+}
+
+// Footer (for actions)
+.modal-footer {
+	padding: $spacer;
+
+	@include media-breakpoint-up(sm) {
+		padding-top: map-get($spacers, '40p');
+		padding-bottom: map-get($spacers, '56p');
+	}
+}

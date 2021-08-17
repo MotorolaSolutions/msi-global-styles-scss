@@ -1,0 +1,35 @@
+@for $i from 1 to 10 {
+	.opacity-#{$i} {
+		opacity: $i / 10 !important;
+	}
+}
+
+@each $breakpoint in $object-breakpoints {
+	@each $type in $object-fit-types {
+		.object-fit#{if($breakpoint == xs, '', '-#{$breakpoint}')}-#{$type} {
+			@include media-breakpoint-up($breakpoint) {
+				object-fit: $type !important;
+			}
+		}
+	}
+	@each $x-axis in $object-position-x {
+		@each $y-axis in $object-position-y {
+			.object-position#{if($breakpoint == xs, '', '-#{$breakpoint}')}-#{$y-axis}-#{$x-axis} {
+				@include media-breakpoint-up($breakpoint) {
+					object-position: $y-axis $x-axis !important;
+				}
+			}
+		}
+	}
+}
+
+.overlay {
+	@include overlay;
+	/*
+		width and height is needed because we use this with img and object-fit
+		https://www.w3.org/TR/CSS2/visudet.html#abs-replaced-height
+		https://www.w3.org/TR/CSS2/visudet.html#abs-replaced-width
+	*/
+	width: 100%;
+	height: 100%;
+}

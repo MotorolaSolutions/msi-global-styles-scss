@@ -1,0 +1,250 @@
+@import 'common';
+@import 'bootstrap/scss/nav';
+.nav-tabs-inner-wrapper {
+	position: relative;
+	overflow: hidden;
+
+	> .dragscroll {
+		display: flex;
+		overflow: hidden;
+		&:before,
+		&:after {
+			display: block;
+			content: '';
+			border-bottom: 1px solid $black-25;
+			flex: 1 1 auto;
+		}
+	}
+}
+
+.nav-tabs-outer-wrapper {
+	position: relative;
+	&.can-scroll-left > .nav-tabs-inner-wrapper {
+		margin-left: $arrow-button-width;
+		> .dragscroll {
+			margin-left: $arrow-button-width * -1;
+		}
+	}
+
+	&.can-scroll-right > .nav-tabs-inner-wrapper {
+		margin-right: $arrow-button-width;
+		> .dragscroll {
+			margin-right: $arrow-button-width * -1;
+		}
+	}
+
+	&.can-scroll-left > .dragscroll-button-underlined + .nav-tabs-inner-wrapper {
+		margin-left: $underlined-arrow-button-width;
+		> .dragscroll {
+			margin-left: $underlined-arrow-button-width * -1;
+		}
+	}
+
+	&.can-scroll-right > .dragscroll-button-underlined + .nav-tabs-inner-wrapper {
+		margin-right: $underlined-arrow-button-width;
+		> .dragscroll {
+			margin-right: $underlined-arrow-button-width * -1;
+		}
+	}
+
+	> .dragscroll-button {
+		transform: rotate(0deg) /* rtl: rotate(180deg) */;
+		display: none;
+		border-radius: 0;
+		position: absolute;
+		padding: 0;
+		bottom: 0;
+		top: 0;
+		z-index: 2;
+
+		&-underlined {
+			width: $underlined-arrow-button-width;
+			@include lightTheme() {
+				border-bottom: $nav-tabs-border-width solid $black-10;
+			}
+			@include darkTheme() {
+				border-bottom: $nav-tabs-border-width solid $white-10;
+			}
+
+			&:hover {
+				@include lightTheme() {
+					background-color: $black-05;
+				}
+				@include darkTheme() {
+					background-color: $white-05;
+				}
+			}
+		}
+
+		&:not(.dragscroll-button-underlined) {
+			width: $arrow-button-width;
+			margin-top: auto;
+			background-color: $dark-gray;
+			border: $tabs-border;
+			&:hover {
+				@include lightTheme() {
+					background-color: $white;
+				}
+				@include darkTheme() {
+					background-color: $light-gray;
+				}
+			}
+
+			.fill-primary {
+				fill: $dark-black;
+			}
+		}
+
+		&.left {
+			left: 0;
+		}
+
+		&.right {
+			right: 0;
+		}
+	}
+
+	&.can-scroll-right > .dragscroll-button.right,
+	&.can-scroll-left > .dragscroll-button.left {
+		display: flex;
+	}
+}
+
+.nav-tabs {
+	flex-wrap: nowrap;
+	z-index: 1;
+
+	.nav-item {
+		position: relative;
+		flex-grow: 0;
+	}
+
+	.nav-link {
+		font-weight: bold;
+		border-top: none;
+		border-left: none;
+		border-right: none;
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		text-align: center;
+		height: 100%;
+		transition: all $transition-duration-fast ease-in-out;
+	}
+
+	&:not(&-underlined) {
+		@include responsiveFont($type-h6, false);
+		margin-left: auto;
+		margin-right: auto;
+		.nav-item {
+			&:not(:last-of-type) {
+				padding-right: 2px;
+				.nav-link::after {
+					content: '';
+					position: absolute;
+					right: -3px;
+					bottom: -1px;
+					width: 2px;
+					border-bottom: 1px solid $black-25;
+				}
+			}
+			padding-left: 0;
+		}
+		.nav-link {
+			text-transform: uppercase;
+			border-top-left-radius: $tabs-border-radius;
+			border-top-right-radius: $tabs-border-radius;
+			border-bottom: none;
+			padding: map-get($spacers, '12p') map-get($spacers, '20p');
+			white-space: nowrap;
+			background-color: $dark-gray;
+			background-clip: padding-box;
+			border: 1px solid $dark-gray;
+			border-bottom-color: $black-25;
+
+			&:not(.disabled) {
+				color: $black-60;
+			}
+
+			&:hover,
+			&:active,
+			&.active {
+				color: $black-95;
+				border-color: $black-25;
+				border-bottom-color: $bg-light-primary;
+				background-color: $bg-light-primary;
+			}
+		}
+	}
+
+	&-underlined {
+		width: 100%;
+		&:after {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 1px;
+			content: '';
+			display: block;
+			@include lightTheme() {
+				border-bottom: 1px solid $black-10;
+			}
+			@include darkTheme() {
+				border-bottom: 1px solid $white-10;
+			}
+		}
+		/* stylelint-disable no-descending-specificity */
+		.nav-item {
+			&:not(:last-of-type) {
+				padding-right: $nav-link-padding-x * 2;
+				@include media-breakpoint-down(md) {
+					padding-right: map-get($spacers, '8p');
+				}
+			}
+
+			@include media-breakpoint-down(md) {
+				flex-grow: 1;
+			}
+		}
+
+		.nav-link {
+			@include responsiveFont($type-h5, false);
+			padding-top: map-get($spacers, '24p');
+			padding-bottom: map-get($spacers, '16p');
+			border-radius: 0;
+			text-transform: none;
+			border-bottom: 2px solid transparent;
+			@include lightTheme() {
+				&:not(.disabled) {
+					color: $text-black;
+				}
+				&:hover {
+					background-color: $black-05;
+				}
+				&:active {
+					background-color: $black-10;
+				}
+				&.active {
+					border-bottom-color: $dark-blue;
+				}
+			}
+			@include darkTheme() {
+				&:not(.disabled) {
+					color: $white;
+				}
+				&:hover {
+					background-color: $white-05;
+				}
+				&:active {
+					background-color: $white-10;
+				}
+				&.active {
+					border-bottom-color: $link-color-inverted;
+				}
+			}
+		}
+		/* stylelint-enable */
+	}
+}

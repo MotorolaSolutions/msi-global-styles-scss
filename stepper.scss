@@ -1,0 +1,400 @@
+@import 'common';
+@import 'settings/type';
+
+.stepper {
+	display: flex;
+	flex-direction: column;
+}
+
+.stepper-circle {
+	display: inline-block;
+	height: 24px;
+	width: 24px;
+	line-height: 22px;
+	font-size: 12px;
+	border-radius: 50%;
+	text-align: center;
+	margin-bottom: 4px;
+	background-size: 24px;
+	transition: all $transition-duration-fast ease-in-out;
+	flex-shrink: 0;
+
+	@include lightTheme {
+		background-color: $bg-light-primary;
+		border: solid 1px #d3d3d3;
+		color: $light-black;
+	}
+	@include darkTheme {
+		background-color: transparent;
+		border: solid 1px #979797;
+		color: $bg-light-primary;
+	}
+}
+
+.stepper-button {
+	background: none;
+	border: 0;
+	padding: 0;
+	display: flex;
+	&.focus,
+	&:focus {
+		outline: none;
+		.stepper-circle {
+			box-shadow: $step-shadow;
+		}
+	}
+}
+
+.stepper-back-button {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.stepper-label {
+	font-size: 12px;
+	margin-left: 8px;
+	line-height: 18px;
+	margin-top: 3px;
+	transition: all $transition-duration-fast ease-in-out;
+	text-align: left;
+	@include lightTheme {
+		color: $light-black;
+	}
+	@include darkTheme {
+		color: $body-color-inverted;
+	}
+}
+
+.stepper-item {
+	position: relative;
+	float: left;
+	clear: left;
+	min-height: 64px;
+	order: 1;
+	padding: 0;
+	border: 0;
+	background: none;
+	display: flex;
+	align-items: flex-start;
+	&.focus,
+	&:focus {
+		outline: 0;
+		.stepper-circle {
+			box-shadow: $step-shadow;
+		}
+	}
+	&.completed {
+		order: -1;
+		.stepper-circle {
+			background-position: -1px -1px;
+			@include lightTheme {
+				background-color: $deep-black;
+				border-color: $deep-black;
+				background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSI+PHBvbHlsaW5lIHN0cm9rZT0iI0ZGRkZGRiIgcG9pbnRzPSI4IDEyIDExIDE1IDE3IDkiPjwvcG9seWxpbmU+PC9nPjwvc3ZnPg==);
+				color: transparent;
+			}
+			@include darkTheme {
+				background-color: $bg-light-secondary;
+				border-color: $bg-light-secondary;
+				background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSI+PHBvbHlsaW5lIHN0cm9rZT0iIzAwMDAwMCIgcG9pbnRzPSI4IDEyIDExIDE1IDE3IDkiPjwvcG9seWxpbmU+PC9nPjwvc3ZnPg==);
+				color: transparent;
+			}
+		}
+		&:hover,
+		&.hover {
+			.stepper-circle {
+				color: $bg-light-primary;
+				background-image: none;
+			}
+		}
+		&::after {
+			@include lightTheme {
+				background-color: $headings-color;
+			}
+			@include darkTheme {
+				background-color: $bg-light-primary;
+			}
+		}
+	}
+	&.active {
+		order: 0;
+		min-height: 32px;
+		/* stylelint-disable no-descending-specificity */
+		.stepper-circle {
+			@include lightTheme {
+				background-color: $deep-black;
+				color: $bg-light-primary;
+				border-color: $deep-black;
+			}
+			@include darkTheme {
+				background-color: $bg-light-primary;
+				color: $bg-dark-secondary;
+				border-color: $bg-light-primary;
+			}
+		}
+		.stepper-label {
+			@extend h3;
+			margin-bottom: 0;
+			line-height: 24px;
+			@include lightTheme {
+				color: $headings-color;
+			}
+			@include darkTheme {
+				color: $bg-light-primary;
+			}
+		}
+	}
+	&.hover,
+	&:hover {
+		.stepper-circle {
+			@include lightTheme {
+				background-color: $text-black;
+				color: $bg-light-primary;
+				border-color: $text-black;
+			}
+			@include darkTheme {
+				background-color: #dbdbdb;
+				color: $bg-dark-secondary;
+				border-color: #dbdbdb;
+			}
+		}
+	}
+	&.error,
+	&.error:hover,
+	&.error.hover,
+	&.error.completed,
+	&.error.active {
+		background-size: 24px;
+		.stepper-circle {
+			background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjZmZmIiBjbGFzcz0iZmlsbC1wcmltYXJ5IiBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik0yMy44MzcgMjIuMTQ2TDE2LjYxMSA5LjE1NGMtLjA3Ny0uMTU0LS4zMDgtLjE1NC0uMzg1IDBMOSAyMi4xNDZ2LjIzbC4yMy4xNTRoMTQuNDUzbC4yMzEtLjE1M3YtLjIzMWgtLjA3N3ptLTYuNzY1LTguNTMzbC0uMzA3IDQuOTk3aC0uNjkybC0uMzA4LTQuOTk3aDEuMzg0LS4wNzd6bS0uNjkyIDcuNDU3YS42ODkuNjg5IDAgMCAxLS42OTItLjY5MmMwLS4zODUuMzA4LS42OTIuNjkyLS42OTIuMzg1IDAgLjY5Mi4zMDcuNjkyLjY5MmEuNjg5LjY4OSAwIDAgMS0uNjkyLjY5MnoiLz48L3N2Zz4);
+			background-size: 24px;
+			background-position: center -1px;
+			@include lightTheme {
+				background-color: $error;
+				border-color: $error;
+				color: transparent;
+			}
+			@include darkTheme {
+				background-color: $error;
+				border-color: $error;
+				color: transparent;
+			}
+		}
+	}
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 32px;
+		left: 11px;
+		width: 1px;
+		height: calc(100% - 40px);
+		@include lightTheme {
+			background-color: $dark-gray;
+		}
+		@include darkTheme {
+			background-color: $light-black;
+		}
+	}
+	&:last-of-type {
+		min-height: initial;
+		&::after {
+			height: 0;
+			display: none;
+		}
+	}
+}
+
+.stepper-content {
+	clear: left;
+	margin-left: 32px;
+	position: relative;
+	h3 {
+		display: none;
+	}
+	&::before {
+		position: absolute;
+		width: 1px;
+		top: 0;
+		height: calc(100% - 8px);
+		content: '';
+		left: -21px;
+		@include lightTheme {
+			background: linear-gradient($headings-color, $dark-gray 50%);
+		}
+		@include darkTheme {
+			background: linear-gradient($bg-light-primary, $light-black 50%);
+		}
+	}
+}
+
+@include media-breakpoint-up(sm) {
+	.stepper {
+		display: block;
+	}
+	.stepper-back-button {
+		position: static;
+	}
+	.stepper-item {
+		float: left;
+		clear: left;
+		width: 27%;
+
+		&.active {
+			min-height: 64px;
+			.stepper-label {
+				font-size: 12px;
+				line-height: 25px;
+			}
+			&::after {
+				height: calc(100% - 40px);
+				@include lightTheme {
+					background: linear-gradient($headings-color, $dark-gray 50%);
+				}
+				@include darkTheme {
+					background: linear-gradient($bg-light-primary, $light-black 50%);
+				}
+			}
+		}
+	}
+	.stepper-content {
+		clear: none;
+		margin-left: 30%;
+		h3 {
+			display: initial;
+		}
+		&::before {
+			display: none;
+		}
+	}
+}
+
+@mixin stepperHorizontal() {
+	&.stepper {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.stepper-button {
+		flex-direction: column;
+		align-items: center;
+	}
+	.stepper-circle {
+		margin-bottom: 8px;
+	}
+	.stepper-label {
+		padding: 0 8px;
+		margin-left: 0;
+		margin-top: 0;
+		text-align: center;
+	}
+	.stepper-item {
+		width: auto;
+		min-width: 111px;
+		max-width: 243px;
+		order: 0;
+		justify-content: center;
+		&.active {
+			min-height: auto;
+			.stepper-label {
+				font-size: 12px;
+				line-height: 18px;
+			}
+		}
+		&:not(:last-of-type) {
+			&::after {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 12px;
+				left: calc(50% + 20px);
+				height: 1px;
+				width: calc(50% - 20px);
+			}
+		}
+		&:not(:first-of-type) {
+			&::before {
+				content: '';
+				display: block;
+				position: absolute;
+				top: remsize(12);
+				left: 0;
+				height: 1px;
+				width: calc(50% - #{remsize(12)} - #{remsize(8)});
+			}
+		}
+		@include lightTheme {
+			&:not(:last-child) {
+				&.active {
+					&::after {
+						background: linear-gradient(to left, $dark-gray, $headings-color);
+					}
+				}
+			}
+			&:not(:first-child) {
+				&::before {
+					background-color: $dark-gray;
+				}
+				&.completed,
+				&.active {
+					&::before {
+						background-color: $headings-color;
+					}
+				}
+			}
+		}
+		@include darkTheme {
+			&:not(:last-child) {
+				&.active {
+					&::after {
+						background: linear-gradient(to left, $light-black, $bg-light-primary);
+					}
+				}
+			}
+			&:not(:first-child) {
+				&::before {
+					background-color: $light-black;
+				}
+				&.completed,
+				&.active {
+					&::before {
+						background-color: $bg-light-primary;
+					}
+				}
+			}
+		}
+	}
+	.stepper-content {
+		flex-basis: 100%;
+		margin-left: 0;
+		order: 1;
+		&::before {
+			display: none;
+		}
+	}
+}
+
+/* stylelint-enable */
+.stepper-horizontal {
+	@include stepperHorizontal();
+}
+
+.stepper-sm-horizontal {
+	@include media-breakpoint-up(sm) {
+		@include stepperHorizontal();
+	}
+}
+
+.stepper-md-horizontal {
+	@include media-breakpoint-up(md) {
+		@include stepperHorizontal();
+	}
+}
+
+.stepper-lg-horizontal {
+	@include media-breakpoint-up(lg) {
+		@include stepperHorizontal();
+	}
+}

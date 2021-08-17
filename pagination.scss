@@ -1,0 +1,130 @@
+@import 'common';
+
+.pagination {
+	display: flex;
+	padding-left: 0;
+	list-style: none;
+}
+
+.page-link {
+	@include input-focus-selector();
+	position: relative;
+	display: block;
+	text-align: center;
+	padding: (($pagination-link-size - $pagination-font-size)/2)-1 0;
+	font-size: $pagination-font-size;
+	line-height: $pagination-font-size;
+	width: $pagination-link-size;
+	svg {
+		.fill-primary {
+			@include lightTheme {
+				fill: $black-normal;
+			}
+			@include darkTheme {
+				fill: $white-normal;
+			}
+		}
+	}
+
+	@include lightTheme {
+		color: $black-normal;
+		border: 1px solid transparent;
+	}
+	@include darkTheme {
+		margin-left: -1px;
+		color: $white-normal;
+		border: 1px solid transparent;
+	}
+
+	&:hover,
+	&.hover {
+		@include lightTheme {
+			background-color: $white;
+			color: $black-strong;
+			svg {
+				.fill-primary {
+					fill: $black-strong;
+				}
+			}
+		}
+		@include darkTheme {
+			background-color: transparent;
+			color: $white-strong;
+			border: 1px solid $white-muted;
+			svg {
+				.fill-primary {
+					fill: $white-strong;
+				}
+			}
+		}
+	}
+}
+
+.page-item {
+	&:not(:first-child):not(:last-child) {
+		margin-left: 2px;
+		margin-right: 2px;
+	}
+	&:hover:not(.active):not(.disabled):not(:first-child):not(:last-child),
+	&.hover:not(.active):not(.disabled):not(:first-child):not(:last-child) {
+		box-shadow: map-get(map-get($shadows, 'xs'), 'light');
+	}
+	&.active .page-link {
+		z-index: 1;
+		box-shadow: map-get(map-get($shadows, 'sm'), 'light');
+		cursor: default;
+		@include lightTheme {
+			color: $black-strong;
+			background-color: $white;
+		}
+		@include darkTheme {
+			color: $white-strong;
+			background-color: transparent;
+			border: 1px solid $white-normal;
+		}
+		svg {
+			.fill-primary {
+				@include lightTheme {
+					fill: $black-strong;
+				}
+				@include darkTheme {
+					fill: $white-strong;
+				}
+			}
+		}
+	}
+	&.disabled .page-link {
+		box-shadow: none;
+		cursor: not-allowed;
+		border: 0;
+		svg {
+			.fill-primary {
+				@include lightTheme {
+					fill: $black-muted;
+				}
+				@include darkTheme {
+					fill: $white-muted;
+				}
+			}
+		}
+	}
+}
+
+@include media-breakpoint-down(sm) {
+	.page-link {
+		width: $pagination-link-size-lg;
+		padding: ceil(($pagination-link-size-lg - $pagination-font-size-lg)/2)-1.5 0;
+		font-size: $pagination-font-size-lg;
+		line-height: $pagination-font-size-lg;
+	}
+}
+
+.pagination-lg {
+	//stylelint-disable-next-line no-descending-specificity
+	.page-link {
+		width: $pagination-link-size-lg;
+		padding: ceil(($pagination-link-size-lg - $pagination-font-size-lg)/2)-1.5 0;
+		font-size: $pagination-font-size-lg;
+		line-height: $pagination-font-size-lg;
+	}
+}

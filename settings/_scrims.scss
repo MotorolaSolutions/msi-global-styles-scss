@@ -1,0 +1,82 @@
+$scrims: (
+	dark-blue: (
+		xs: (
+			gradient: linear-gradient(-179deg, $black 0%, $dark-blue 99%),
+			opacity: 0.9,
+		),
+		md: (
+			gradient: linear-gradient(-179deg, $black 0%, $dark-blue 100%),
+			opacity: 0.9,
+		),
+		lg: (
+			gradient: linear-gradient(-179deg, $black 0%, $dark-blue 95%),
+		),
+	),
+	medium-black: (
+		xs: (
+			gradient: linear-gradient(0deg, $black 0%, $black-60 100%),
+		),
+		md: (
+			gradient: linear-gradient(90deg, $black 0%, rgba(0, 0, 0, 0.7) 100%),
+			opacity: 0.9,
+		),
+		lg: (
+			gradient: linear-gradient(46deg, $black 7%, $black-0 100%),
+			opacity: 1,
+		),
+	),
+	pale-blue: (
+		xs: (
+			gradient: linear-gradient(-180deg, rgba(0, 40, 255, 0.2) 0%, #1a000b 100%),
+		),
+		md: (
+			gradient: linear-gradient(90deg, rgba(0, 40, 255, 0.1) 0%, #1a000b 100%),
+		),
+		lg: (
+			gradient: linear-gradient(-231deg, rgba(0, 40, 255, 0) 0%, #1a000b 100%),
+		),
+	),
+	dark-azure: (
+		xs: (
+			gradient: linear-gradient(0deg, $black 0%, rgba(0, 51, 102, 0.4) 100%),
+		),
+		md: (
+			gradient: linear-gradient(-90deg, $black 0%, rgba(0, 64, 128, 0.2) 100%),
+		),
+		lg: (
+			gradient: linear-gradient(-51deg, $black 1%, rgba(0, 64, 128, 0.2) 88%),
+		),
+	),
+	transparent: (
+		xs: (
+			gradient: linear-gradient(-179deg, $black-10 0%, rgba(0, 0, 0, 0.7) 100%),
+		),
+		md: (
+			gradient: linear-gradient(-179deg, $black-05 0%, $black-60 100%),
+		),
+		lg: (
+			gradient: linear-gradient(-179deg, $black 0%, rgba(0, 0, 0, 0.5) 100%),
+		),
+	),
+	gray-blue: (
+		xs: (
+			gradient: linear-gradient(0deg, $black 0%, rgba(0, 51, 102, 0.4) 100%),
+		),
+		md: (
+			gradient: linear-gradient(-90deg, $black 0%, rgba(0, 64, 128, 0.2) 100%),
+		),
+		lg: (
+			gradient: linear-gradient(-51deg, $black 1%, rgba(0, 64, 128, 0.2) 88%),
+		),
+	),
+	midnight-blue: (
+		xs: (
+			backgroundBase: rgba(17, 17, 17, 0.9),
+			gradient: linear-gradient(0deg, $midnight-blue 2%, rgba(36, 19, 95, 0) 100%),
+		),
+		md: (
+			backgroundBase: rgba(17, 17, 17, 0.8),
+			gradient: linear-gradient(0deg, $midnight-blue 2%, rgba(36, 19, 95, 0) 99%),
+		),
+	),
+);

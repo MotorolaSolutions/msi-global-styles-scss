@@ -1,0 +1,208 @@
+@import 'common';
+@import 'bootstrap/scss/input-group';
+
+.input-group {
+	.input-group-prepend,
+	.input-group-append {
+		// stylelint-disable no-descending-specificity
+		> .btn {
+			@include lightTheme {
+				border-color: $input-border-color;
+			}
+			@include darkTheme {
+				border-color: $white-25;
+			}
+			&.icon {
+				display: inline-flex;
+				&.btn-lg,
+				&.btn-lg:before,
+				&,
+				&:before {
+					width: remsize(48);
+					height: remsize(48);
+				}
+				&,
+				&:before {
+					@include media-breakpoint-up(sm) {
+						width: remsize(40);
+						height: remsize(40);
+					}
+				}
+				&:before {
+					left: $input-btn-border-width * -1;
+					top: $input-btn-border-width * -1;
+				}
+			}
+			&:disabled {
+				@include lightTheme {
+					background-color: $black-10;
+				}
+
+				@include darkTheme {
+					background-color: $white-10;
+				}
+				> * {
+					opacity: 0.25;
+				}
+			}
+		}
+	}
+
+	.input-group-prepend > .btn {
+		@include lightTheme {
+			border-right-color: transparent;
+		}
+		@include darkTheme {
+			border-right-color: transparent;
+		}
+	}
+
+	.input-group-append > .btn {
+		@include lightTheme {
+			border-left-color: transparent;
+		}
+		@include darkTheme {
+			border-left-color: transparent;
+		}
+	}
+}
+// stylelint-enable
+
+.input-group-text {
+	line-height: 1;
+}
+
+.input-group-error-message {
+	color: $error-dark;
+	position: absolute;
+	top: remsize(50);
+	margin: 0;
+
+	@include lightTheme {
+		color: $error-dark;
+	}
+
+	@include darkTheme {
+		color: $error;
+	}
+}
+
+// stylelint-disable no-descending-specificity
+.input-group-search {
+	max-width: 348px;
+	z-index: 1;
+	.overlay {
+		position: fixed;
+		background-color: $black-0;
+		transition: background-color $transition-duration-fast ease-in-out;
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	input:focus ~ .overlay {
+		background-color: $black-40;
+		pointer-events: initial;
+	}
+
+	> .form-control {
+		background-color: $white;
+		color: $black;
+		padding-left: 24px;
+		max-width: unset;
+
+		&::-ms-clear {
+			display: none;
+		}
+
+		&:not(:last-child) {
+			border-radius: remsize(25);
+		}
+
+		&:focus:not(:active) {
+			border-color: $dark-blue;
+		}
+
+		&::selection {
+			background-color: $dark-blue;
+			color: $white;
+		}
+
+		&::placeholder {
+			color: $light-black;
+		}
+	}
+
+	&-clear-button {
+		&.btn.icon {
+			position: absolute;
+		}
+		z-index: 3;
+		&:before {
+			border-radius: 50%;
+		}
+		.fill-primary {
+			fill: $black;
+		}
+	}
+	> .input-group-append {
+		position: absolute;
+		right: 1px;
+		top: 1px;
+		bottom: 1px;
+		z-index: 3;
+
+		> .btn {
+			height: 100%;
+			width: 100%;
+		}
+	}
+
+	> .dropdown-menu {
+		border: none;
+		box-shadow: $dropdown-box-shadow;
+		left: map-get($spacers, '12p');
+		right: map-get($spacers, '12p');
+	}
+
+	&-lg {
+		max-width: 540px;
+	}
+
+	&,
+	&.input-group-search-lg {
+		> .form-control {
+			padding-right: remsize(122);
+		}
+
+		> .input-group-append {
+			width: remsize(82);
+			> .btn {
+				border-radius: remsize(23);
+			}
+		}
+
+		.input-group-search-clear-button {
+			right: remsize(87);
+			top: remsize(9);
+		}
+	}
+
+	@include media-breakpoint-up(sm) {
+		> .form-control {
+			padding-right: remsize(110);
+		}
+
+		> .input-group-append {
+			width: remsize(70);
+			> .btn {
+				border-radius: remsize(19);
+			}
+		}
+
+		.input-group-search-clear-button {
+			right: remsize(75);
+			top: remsize(4);
+		}
+	}
+	// stylelint-enable
+}

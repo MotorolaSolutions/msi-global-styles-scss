@@ -1,0 +1,150 @@
+$info-colors: ($black-strong, $deep-black, $info, $info, $info, $white, $white);
+$info-bordered: (
+	$black-strong,
+	$white,
+	transparentize($info, 0.9),
+	transparentize($info, 0.9),
+	transparentize($info, 0.8),
+	$info,
+	$info,
+	$info
+);
+$info-action: (
+	$black-strong,
+	$white,
+	$white,
+	$bg-dark-secondary,
+	$white,
+	$white,
+	$white,
+	transparent,
+	$info
+);
+$info-spaced: (
+	$black-strong,
+	$white,
+	transparentize($info, 0.9),
+	transparentize($info, 0.9),
+	transparentize($info, 0.8),
+	$info,
+	$info,
+	$info,
+	$info,
+	$info-dark
+);
+
+$error-colors: ($black-strong, $deep-black, $error, $error, $error, $white, $white);
+$error-bordered: (
+	$black-strong,
+	$white,
+	transparentize($error, 0.9),
+	transparentize($error, 0.9),
+	transparentize($error, 0.8),
+	$error,
+	$error,
+	$error
+);
+$error-action: (
+	$black-strong,
+	$white,
+	$white,
+	$bg-dark-secondary,
+	$white,
+	$white,
+	$white,
+	transparent,
+	$error
+);
+$error-spaced: (
+	$black-strong,
+	$white,
+	transparentize($error, 0.9),
+	transparentize($error, 0.9),
+	transparentize($error, 0.8),
+	$error,
+	$error,
+	$error,
+	$error,
+	$error-dark
+);
+
+$warning-colors: (
+	$black-strong,
+	$deep-black,
+	$warning,
+	$warning,
+	$warning,
+	$dark-black,
+	$dark-black
+);
+$warning-bordered: (
+	$black-strong,
+	$white,
+	transparentize($warning, 0.9),
+	transparentize($warning, 0.9),
+	transparentize($warning, 0.8),
+	$dark-black,
+	$warning,
+	$warning
+);
+$warning-action: (
+	$black-strong,
+	$white,
+	$white,
+	$bg-dark-secondary,
+	$white,
+	$dark-black,
+	$dark-black,
+	transparent,
+	$warning
+);
+$warning-spaced: (
+	$black-strong,
+	$white,
+	transparentize($warning, 0.9),
+	transparentize($warning, 0.9),
+	transparentize($warning, 0.8),
+	$dark-black,
+	$warning,
+	$warning,
+	$warning,
+	$warning-dark
+);
+
+$success-colors: ($black-strong, $deep-black, $success, $success, $success, $white, $white);
+
+$success-bordered: (
+	$black-strong,
+	$white,
+	transparentize($success, 0.9),
+	transparentize($success, 0.9),
+	transparentize($success, 0.8),
+	$success,
+	$success,
+	$success
+);
+
+$success-action: (
+	$black-strong,
+	$white,
+	$white,
+	$bg-dark-secondary,
+	$white,
+	$white,
+	$white,
+	transparent,
+	$success
+);
+
+$success-spaced: (
+	$black-strong,
+	$white,
+	transparentize($success, 0.9),
+	transparentize($success, 0.9),
+	transparentize($success, 0.8),
+	$success,
+	$success,
+	$success,
+	$success,
+	$success-dark
+);

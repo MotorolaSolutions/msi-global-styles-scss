@@ -1,0 +1,41 @@
+@each $name, $variants in $brand-colors {
+	.bg-#{$name} {
+		@each $variant, $color in $variants {
+			@if $variant == 'base' {
+				background-color: $color !important;
+			} @else {
+				&-#{$variant} {
+					background-color: $color !important;
+				}
+			}
+		}
+	}
+}
+
+.bg-black {
+	background-color: $black;
+}
+
+.bg-white {
+	background-color: $white;
+}
+
+.bg-transparent {
+	background-color: transparent;
+}
+
+.bg-opacity-10 {
+	@include lightTheme {
+		background-color: $black-10;
+	}
+
+	@include darkTheme {
+		background-color: $white-10;
+	}
+}
+
+@each $name, $color in $alert-colors {
+	.bg-#{$name} {
+		background-color: rgba($color, 0.1);
+	}
+}

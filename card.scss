@@ -1,0 +1,194 @@
+@import 'common';
+@import 'bootstrap/scss/card';
+
+.card {
+	box-shadow: map-get(map-get($shadows, 'xs'), 'light');
+	margin-bottom: map-get($spacers, '32p');
+
+	&,
+	&-footer,
+	&-header {
+		@include lightTheme {
+			background-color: $bg-light-primary;
+		}
+		@include darkTheme {
+			background-color: $bg-dark-secondary;
+		}
+	}
+	@include lightTheme {
+		box-shadow: map-get(map-get($shadows, 'xs'), 'light');
+	}
+	@include darkTheme() {
+		box-shadow: map-get(map-get($shadows, 'xs'), 'dark');
+	}
+
+	&-body {
+		padding-bottom: map-get($spacers, '24p');
+		&:last-child {
+			margin-bottom: 0 !important;
+		}
+	}
+
+	&-title {
+		-webkit-line-clamp: 3;
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+	}
+
+	&-footer {
+		padding-top: 0;
+		padding-bottom: map-get($spacers, '24p');
+	}
+
+	&.spaced {
+		.card-header {
+			padding: map-get($spacers, '32p');
+			padding-bottom: 0;
+		}
+
+		.card-body {
+			padding: map-get($spacers, '32p');
+		}
+
+		.card-footer {
+			margin-top: map-get($spacers, '8p') * -1;
+			padding: 0 map-get($spacers, '32p') map-get($spacers, '32p') map-get($spacers, '32p');
+		}
+	}
+
+	&.hoverable {
+		transition: box-shadow $transition-duration-fast ease-in-out;
+		&:hover {
+			box-shadow: map-get(map-get($shadows, 'lg'), 'light');
+		}
+	}
+
+	.btn-toggle {
+		// use box-shadow instead of border to remove conflict with focus 1px border
+		@include lightTheme {
+			box-shadow: 0 -2px 0 $secondary;
+		}
+		@include darkTheme {
+			box-shadow: 0 -2px 0 $text-black;
+		}
+
+		&.opened {
+			transition: box-shadow $transition-duration-fast ease-in-out;
+			border-top-width: 0;
+		}
+	}
+}
+
+.accordion > .card {
+	overflow: visible;
+	box-shadow: none;
+	margin-bottom: 0;
+
+	&,
+	& .card-header {
+		@include lightTheme {
+			background: transparent;
+		}
+		@include darkTheme {
+			background: transparent;
+		}
+	}
+
+	&,
+	// this is needed to overwrite bootstrap dafault border-bottom: 0 on :not(:last-of-type)
+	&:not(:last-of-type) {
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+		@include lightTheme {
+			border-color: $black-10;
+		}
+		@include darkTheme {
+			border-color: $white-10;
+		}
+	}
+
+	// stylelint-disable no-descending-specificity
+	.card-header {
+		position: relative;
+		border: 0;
+		display: flex;
+		align-items: center;
+		min-height: remsize(48);
+		padding-top: 0;
+		padding-bottom: 0;
+		font-weight: $font-weight-bold;
+		text-align: left;
+
+		@include lightTheme {
+			color: $headings-color;
+			&:hover {
+				@media (any-hover: hover) {
+					background-color: $black-10;
+				}
+			}
+		}
+		@include darkTheme {
+			color: $headings-color-inverted;
+			&:hover {
+				@media (any-hover: hover) {
+					background-color: $white-10;
+				}
+			}
+		}
+
+		// focus styles added via :before because we do not want to have border
+		&:before {
+			content: '';
+			@include overlay;
+		}
+		&:focus {
+			outline: 0;
+		}
+		/* stylelint-disable */
+		@at-root body.user-is-tabbing &:focus,
+			&.focus {
+			&:before {
+				@include input-focus(false);
+			}
+		}
+		/* stylelint-enable */
+
+		&.active:not(:hover) {
+			@include lightTheme {
+				background-color: $bg-dark-primary;
+				color: $headings-color-inverted;
+			}
+			@include darkTheme {
+				background-color: $bg-light-tertiary;
+				color: $headings-color;
+			}
+
+			.fill-primary {
+				@include lightTheme {
+					fill: $headings-color-inverted;
+				}
+				@include darkTheme {
+					fill: $headings-color;
+				}
+			}
+		}
+
+		.icon:last-child {
+			margin-left: auto;
+			transition: transform $transition-duration-fast ease-in-out;
+		}
+
+		&.collapsed > .icon:last-child {
+			transform: rotate(180deg);
+		}
+	}
+
+	&.card-lg > .card-header {
+		min-height: remsize(64);
+	}
+
+	&.card-lg .card-body {
+		padding: map-get($spacers, '24p');
+	}
+}

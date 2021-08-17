@@ -1,0 +1,461 @@
+@import 'common';
+
+$header-breakpoints: (
+	576: 576px,
+	1024: 1024px,
+);
+
+.header-user-menu-body.header-login {
+	padding: 0 $grid-gutter-width/2 0;
+	@include media-breakpoint-up(576, $header-breakpoints) {
+		width: 50%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@include media-breakpoint-up(1024, $header-breakpoints) {
+		width: 100%;
+		min-width: 303px;
+		margin-bottom: 0;
+		padding: 0 0 map-get($spacers, '8p') 0;
+	}
+}
+
+.header-login {
+	$self: &;
+
+	&-head {
+		display: none;
+	}
+
+	&-alert {
+		position: relative;
+		display: flex;
+		padding: map-get($spacers, '8p') map-get($spacers, '8p') map-get($spacers, '8p')
+			map-get($spacers, '40p');
+		margin-bottom: map-get($spacers, '24p');
+		color: $black-95;
+		background-color: rgba($error, 0.1);
+		border: 1px solid $error;
+		border-radius: 3px;
+		&-icon {
+			position: absolute;
+			display: flex;
+			width: 40px;
+			height: 100%;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			line-height: 24px;
+			align-items: center;
+			background-color: $black-0;
+			justify-content: center;
+			align-self: center;
+			vertical-align: middle;
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+		}
+		&-content-text {
+			margin: 0;
+			@include responsiveFont($type-p-sm, false);
+			color: $black-strong;
+		}
+	}
+
+	&-icon {
+		opacity: 0.6;
+	}
+
+	&-signing-in-wrapper {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: map-get($spacers, '16p');
+	}
+
+	&-signing-in-text {
+		letter-spacing: normal;
+	}
+
+	&-email {
+		@include responsiveFont($type-p-md, false);
+		letter-spacing: 0.2px;
+		margin-bottom: map-get($spacers, '48p');
+		color: $black-95;
+	}
+
+	&-form-group {
+		margin-bottom: map-get($spacers, '48p');
+		&-label {
+			display: inline-block;
+			margin-bottom: map-get($spacers, '8p');
+			color: $black-95;
+			@include responsiveFont($type-p-sm, false);
+		}
+	}
+
+	&-form-control {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		height: 48px;
+		padding: 10px map-get($spacers, '16p');
+		margin: 0;
+		@include responsiveFont($type-p-md, false);
+		letter-spacing: 0.2;
+		color: $black-95;
+		background-color: $white;
+		border-color: $black-25;
+		background-clip: padding-box;
+		border: 1px solid $black-25;
+		border-radius: 0;
+		transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+		overflow: visible;
+		outline: none;
+		&::placeholder {
+			color: $black-25;
+			opacity: 1;
+		}
+		&:hover {
+			border-color: $black-60;
+		}
+		&:focus,
+		&:focus:hover {
+			border-color: $light-blue;
+			box-shadow: 0 0 0 2px rgba($light-blue, 0.5);
+		}
+		&-with-icon {
+			padding: 10px map-get($spacers, '48p') 10px map-get($spacers, '16p');
+		}
+	}
+
+	&-input-wrapper {
+		position: relative;
+		display: flex;
+	}
+
+	&-input-toggle-view {
+		width: map-get($spacers, '48p');
+		height: map-get($spacers, '48p');
+		border: solid 1px transparent;
+		background-color: transparent;
+		margin-left: -(map-get($spacers, '48p'));
+		& #{$self}-icon {
+			opacity: 0.6;
+		}
+		&:hover {
+			& #{$self}-icon {
+				opacity: 0.95;
+			}
+		}
+		@include input-focus-selector();
+	}
+
+	&-icon-disable {
+		display: none;
+	}
+
+	&-form-check {
+		display: block;
+		position: relative;
+		padding-left: 36px;
+		line-height: 16px;
+		&-input {
+			position: absolute;
+			width: 24px;
+			height: 24px;
+			margin: map-get($spacers, '12p') 0 0 -36px;
+			padding: 0;
+			opacity: 0;
+			overflow: visible;
+			&:checked {
+				~ #{$self}-form-check-label {
+					color: $black-95;
+					&:before {
+						background-color: $black-95;
+					}
+					&:after {
+						display: block;
+						position: absolute;
+						content: '';
+						margin-top: map-get($spacers, '12p');
+						width: $grid-gutter-width / 2;
+						height: 7px;
+						top: 6px;
+						left: 5px;
+						background: transparent;
+						border-color: $white-95;
+						border-width: 0 0 2px 2px;
+						border-style: solid;
+						transform: rotate(-45deg);
+					}
+				}
+			}
+			&:focus {
+				~ #{$self}-form-check-label {
+					&:before {
+						border: 1px solid $light-blue;
+						box-shadow: 0 0 0 2px rgba($light-blue, 0.5);
+					}
+				}
+			}
+		}
+		&-label.header-login-form-check-label {
+			display: inline-block;
+			color: $black-60;
+			@include responsiveFont($type-p-md, false);
+			padding-top: 11px;
+			padding-left: 0;
+			margin-bottom: 0;
+			position: static;
+			&:before {
+				margin-top: map-get($spacers, '12p');
+				width: 24px;
+				height: 24px;
+				background-color: $black-0;
+				border-color: $black-60;
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 0;
+				border-style: solid;
+				border-width: 1px;
+				box-sizing: border-box;
+			}
+		}
+	}
+
+	&-button {
+		width: 100%;
+		margin-bottom: map-get($spacers, '56p');
+	}
+
+	&-content {
+		padding-bottom: map-get($spacers, '32p');
+	}
+
+	&-footer {
+		padding-top: map-get($spacers, '24p');
+		border-top: 1px solid $black-10;
+		&-text {
+			margin-top: 0;
+			color: $black-normal;
+		}
+	}
+
+	&-inline-link {
+		padding-left: map-get($spacers, '8p');
+	}
+
+	@include media-breakpoint-up(sm) {
+		margin-top: map-get($spacers, '48p');
+		@include responsiveFont($type-p-md, false);
+		letter-spacing: 0;
+
+		&-alert {
+			margin-bottom: map-get($spacers, '32p');
+		}
+		&-form-group {
+			margin-bottom: map-get($spacers, '40p');
+		}
+		&-form-control {
+			height: 40px;
+			&-with-icon {
+				padding: 10px 40px 10px 16px;
+			}
+		}
+		&-footer-text {
+			font-size: remsize(16px);
+		}
+		&-input-toggle-view {
+			top: map-get($spacers, '8p');
+			margin-left: -40px;
+			height: 40px;
+			width: 40px;
+		}
+		&-signing-in-wrapper {
+			margin-bottom: map-get($spacers, '8p');
+		}
+		&-form-check {
+			padding-left: 24px;
+			&-input {
+				width: 16px;
+				height: 16px;
+				margin: 12px 0 0 -24px;
+				&:checked {
+					~ #{$self}-form-check-label {
+						&:after {
+							width: 10px;
+							height: 5px;
+							top: 4px;
+							left: 3px;
+						}
+					}
+				}
+			}
+		}
+		&-form-check-label.header-login-form-check-label {
+			@include responsiveFont($type-p-sm, false);
+			&:before {
+				width: 16px;
+				height: 16px;
+			}
+		}
+		&-email {
+			margin-bottom: map-get($spacers, '40p');
+		}
+	}
+
+	@include media-breakpoint-up(1024, $header-breakpoints) {
+		margin-top: 0;
+		font-size: remsize(14px);
+		&-head {
+			display: block;
+			padding: 0 map-get($spacers, '24p');
+		}
+		&-header {
+			@include responsiveFont($type-p-md, false);
+			margin-top: 0;
+			margin-bottom: map-get($spacers, '24p');
+			color: $black-95;
+		}
+		&-content {
+			padding: 0 map-get($spacers, '24p');
+		}
+		&-alert {
+			background-color: transparent;
+			border: none;
+			padding: 0 0 0 map-get($spacers, '32p');
+
+			&-icon {
+				align-items: unset;
+				width: auto;
+				svg {
+					position: relative;
+					top: -2px;
+				}
+			}
+			&-content {
+				&-text {
+					line-height: 1.5;
+					color: $error-dark;
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		&-form-group {
+			margin-bottom: map-get($spacers, '24p');
+			&-label {
+				@include responsiveFont($type-p-xs, false);
+			}
+		}
+		&-form-control {
+			@include responsiveFont($type-p-sm, false);
+		}
+		&-email {
+			@include responsiveFont($type-p-sm, false);
+			letter-spacing: 0.4px;
+			margin-top: map-get($spacers, '8p');
+			margin-bottom: map-get($spacers, '32p');
+		}
+		&-button {
+			width: auto;
+			display: block;
+			margin: 0 auto map-get($spacers, '32p');
+		}
+		&-body {
+			padding: map-get($spacers, '16p') map-get($spacers, '24p') 0;
+			margin-top: map-get($spacers, '16p');
+		}
+		&-footer {
+			padding: map-get($spacers, '16p') map-get($spacers, '24p') 0;
+			margin-top: map-get($spacers, '16p');
+		}
+		&-footer-text {
+			@include responsiveFont($type-p-sm, false);
+			letter-spacing: 0.2px;
+			margin-bottom: 0;
+		}
+	}
+
+	&-body {
+		padding-top: map-get($spacers, '24p');
+
+		@include media-breakpoint-up(1024, $header-breakpoints) {
+			border-top: 1px solid $black-10;
+		}
+	}
+
+	&-proxy {
+		&-button {
+			display: block;
+			width: 100%;
+			margin: auto;
+
+			@include media-breakpoint-up(576, $header-breakpoints) {
+				width: initial;
+			}
+		}
+
+		&-login,
+		&-logout {
+			padding-top: 0;
+			padding-left: $grid-gutter-width / 2;
+			padding-right: $grid-gutter-width / 2;
+			margin-top: map-get($spacers, '24p');
+			margin-bottom: map-get($spacers, '24p');
+
+			@include media-breakpoint-up(576, $header-breakpoints) {
+				padding-left: map-get($spacers, '24p');
+				padding-right: map-get($spacers, '24p');
+			}
+
+			@include media-breakpoint-up(1024, $header-breakpoints) {
+				padding-left: 0;
+				padding-right: 0;
+				padding-top: map-get($spacers, '16p');
+				margin-top: map-get($spacers, '16p');
+			}
+		}
+
+		&-login-input {
+			min-width: 200px;
+		}
+
+		&-label {
+			@include font(map-get($type-p-sm, lg) ...);
+			margin-bottom: map-get($spacers, '16p');
+			color: $black-95;
+			@include media-breakpoint-up(1024, $header-breakpoints) {
+				padding: 0 map-get($spacers, '24p');
+				@include font(map-get($type-p-sm, xs) ...);
+			}
+		}
+
+		&-preferences.header-popover-link {
+			padding-left: 0;
+			margin: map-get($spacers, '24p') 0;
+
+			@include media-breakpoint-up(1024, $header-breakpoints) {
+				margin: 0 0 map-get($spacers, '16p');
+				padding: 0 map-get($spacers, '24p');
+			}
+		}
+
+		&-form {
+			margin-bottom: map-get($spacers, '16p');
+
+			@include media-breakpoint-up(576, $header-breakpoints) {
+				margin-bottom: map-get($spacers, '16p');
+			}
+
+			@include media-breakpoint-up(1024, $header-breakpoints) {
+				padding: 0 map-get($spacers, '24p');
+			}
+		}
+
+		&-value {
+			color: $black-normal;
+		}
+	}
+}

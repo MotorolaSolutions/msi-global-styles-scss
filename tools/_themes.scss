@@ -1,0 +1,18 @@
+@mixin lightTheme($includeSelf: true) {
+	@if ($includeSelf) {
+		&,
+		.bg-dark .bg-light & {
+			@content;
+		}
+	} @else {
+		.bg-dark .bg-light & {
+			@content;
+		}
+	}
+}
+
+@mixin darkTheme {
+	.bg-dark & {
+		@content;
+	}
+}

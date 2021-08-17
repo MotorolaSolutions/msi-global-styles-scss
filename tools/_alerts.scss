@@ -1,0 +1,47 @@
+@mixin alert-type(
+	$color,
+	$color-inverted,
+	$bg-color,
+	$bg-color-inverted,
+	$bg-hover,
+	$fill-color,
+	$fill-color-inverted,
+	$border-color: transparent,
+	$icon-background-color: transparent,
+	$heading-spaced-color: $color
+) {
+	> .alert-icon {
+		background-color: $icon-background-color;
+	}
+
+	&:not(.action):hover {
+		background-color: $bg-hover;
+	}
+
+	@include lightTheme {
+		background-color: $bg-color;
+		border-color: $border-color;
+		color: $color;
+
+		> .alert-icon .fill-primary {
+			fill: $fill-color;
+		}
+
+		.alert-heading {
+			color: $heading-spaced-color;
+		}
+	}
+
+	@include darkTheme {
+		background-color: $bg-color-inverted;
+		color: $color-inverted;
+
+		> .alert-icon .fill-primary {
+			fill: $fill-color-inverted;
+		}
+
+		.alert-heading {
+			color: $border-color;
+		}
+	}
+}

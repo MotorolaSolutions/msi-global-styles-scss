@@ -1,0 +1,104 @@
+@mixin button-variant($background, $color, $border-color: false) {
+	color: $color;
+	background: $background;
+
+	@if $border-color {
+		border: 1px solid $border-color;
+	}
+
+	.fill-primary {
+		fill: $color;
+	}
+	.stroke-primary {
+		stroke: $color;
+	}
+}
+
+@mixin button-hover-variant($hover-background, $hover-color, $hover-overlay: false) {
+	&:hover:not(:disabled):not(.disabled),
+	&.hover:not(:disabled):not(.disabled) {
+		color: combineOverlays($hover-overlay, $hover-color);
+		background: combineOverlays($hover-overlay, $hover-background);
+
+		.fill-primary {
+			fill: combineOverlays($hover-overlay, $hover-color);
+		}
+
+		.stroke-primary {
+			stroke: combineOverlays($hover-overlay, $hover-color);
+		}
+	}
+}
+
+@mixin button-disabled-variant(
+	$disabled-background,
+	$disabled-color,
+	$disabled-border-color: false
+) {
+	// Disabled comes first so active can properly restyle
+	&.disabled,
+	&:disabled,
+	&.disabled.hover,
+	&.disabled:hover {
+		color: $disabled-color;
+		background: $disabled-background;
+		cursor: not-allowed;
+
+		@if $disabled-border-color {
+			border: 1px solid $disabled-border-color;
+		}
+
+		.fill-primary {
+			fill: $disabled-color;
+		}
+
+		.stroke-primary {
+			stroke: $disabled-color;
+		}
+	}
+}
+
+@mixin button-active-variant($active-background, $active-color, $active-overlay: false) {
+	&:not(:disabled):not(.disabled):not(:hover):active,
+	&:not(:disabled):not(.disabled):not(:hover).active,
+	.show > &.dropdown-toggle:not(:hover) {
+		color: combineOverlays($active-overlay, $active-color);
+		background: combineOverlays($active-overlay, $active-background);
+		@if $active-overlay {
+			border-color: transparent;
+		}
+	}
+}
+
+@mixin sorting-button-content($defaultColor, $selectedColor: 'transparent', $direction: false) {
+	@if not $direction {
+		content: str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='13' viewBox='0 0 8 13'%3E%3Cpath d='M 0.432 4.454 L 0 4.022 L 4.022 0 L 8.043 4.022 L 7.654 4.454 L 4.022 0.822 L 0.432 4.454 Z' fill='#{$defaultColor}' class='fill-primary arrow-up'%3E%3C/path%3E%3Cpath d='M 7.611 8.5 L 8.043 8.936 L 4.021 13 L 0 8.936 L 0.389 8.5 L 4.021 12.17 L 7.611 8.5 Z' fill='#{$defaultColor}'  class='fill-primary arrow-down'%3E%3C/path%3E%3C/svg%3E"),
+			'#',
+			'%23'
+		);
+	}
+	@if $direction == 'up' {
+		content: str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='13' viewBox='0 0 8 13'%3E%3Cpath d='M 0.432 4.454 L 0 4.022 L 4.022 0 L 8.043 4.022 L 7.654 4.454 L 4.022 0.822 L 0.432 4.454 Z' fill='#{$selectedColor}' class='fill-primary arrow-up'%3E%3C/path%3E%3Cpath d='M 7.611 8.5 L 8.043 8.936 L 4.021 13 L 0 8.936 L 0.389 8.5 L 4.021 12.17 L 7.611 8.5 Z' fill='#{$defaultColor}'  class='fill-primary arrow-down'%3E%3C/path%3E%3C/svg%3E"),
+			'#',
+			'%23'
+		);
+	}
+	@if $direction == 'down' {
+		content: str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='13' viewBox='0 0 8 13'%3E%3Cpath d='M 0.432 4.454 L 0 4.022 L 4.022 0 L 8.043 4.022 L 7.654 4.454 L 4.022 0.822 L 0.432 4.454 Z' fill='#{$defaultColor}' class='fill-primary arrow-up'%3E%3C/path%3E%3Cpath d='M 7.611 8.5 L 8.043 8.936 L 4.021 13 L 0 8.936 L 0.389 8.5 L 4.021 12.17 L 7.611 8.5 Z' fill='#{$selectedColor}'  class='fill-primary arrow-down'%3E%3C/path%3E%3C/svg%3E"),
+			'#',
+			'%23'
+		);
+	}
+}
+
+// dig-home-2-32.svg
+@mixin home-icon($color) {
+	background-image: str-replace(
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='#{$color}' fill-rule='nonzero' d='M15.489 7l7.597 5.97v12.046h-5.535v-5.969h-4.124v5.97H8V12.968z'%3E%3C/path%3E%3C/svg%3E"),
+		'#',
+		'%23'
+	);
+}

@@ -1,0 +1,121 @@
+@import 'common';
+@import 'bootstrap/scss/carousel';
+
+$carousel-control-offset: 64px;
+
+.carousel-indicators li {
+	border-left: $carousel-indicator-hit-area-height solid transparent;
+	border-right: $carousel-indicator-hit-area-height solid transparent;
+	border-radius: 50%;
+	margin-bottom: 0;
+
+	@include media-breakpoint-up(sm) {
+		border-top-width: 8px;
+		border-bottom-width: 8px;
+		border-left-width: 8px;
+		border-right-width: 8px;
+	}
+
+	@include lightTheme {
+		background-color: $black-10;
+		&:hover {
+			background-color: $black-25;
+		}
+		&.active {
+			background-color: $black-95;
+		}
+	}
+
+	@include darkTheme {
+		background-color: $white-10;
+		&:hover {
+			background-color: $white-25;
+		}
+		&.active {
+			background-color: $white-95;
+		}
+	}
+}
+
+.carousel-indicators {
+	bottom: 40px;
+	margin-bottom: 0;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	&,
+	.container & {
+		width: 48px;
+		height: 48px;
+	}
+	@include media-breakpoint-up(sm) {
+		height: 100%;
+		width: 128px;
+	}
+}
+
+// stylelint-disable no-descending-specificity
+.carousel-control-next {
+	&,
+	.container & {
+		justify-content: flex-end;
+	}
+	@include media-breakpoint-up(sm) {
+		justify-content: flex-start;
+	}
+}
+
+.carousel-control-prev {
+	&,
+	.container & {
+		justify-content: flex-start;
+	}
+	@include media-breakpoint-up(sm) {
+		justify-content: flex-end;
+	}
+}
+// stylelint-enable
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+	&,
+	.container & {
+		width: 32px;
+		height: 32px;
+		@include lightTheme {
+			background-color: $black-10;
+		}
+
+		@include darkTheme {
+			background-color: $white-10;
+		}
+	}
+
+	@include media-breakpoint-up(sm) {
+		width: 64px;
+		height: 64px;
+		background-color: transparent;
+	}
+
+	> svg {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.container .carousel {
+	position: static;
+	@media (min-width: map-get($container-max-widths, xl) + (2 * $carousel-control-offset) - $grid-gutter-width) {
+		position: relative;
+		.carousel-control-prev {
+			left: $carousel-control-offset * -1;
+		}
+		.carousel-control-next {
+			right: $carousel-control-offset * -1;
+		}
+	}
+}

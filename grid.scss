@@ -1,0 +1,6 @@
+@import 'common';
+@import 'bootstrap/scss/grid';
+
+.container.non-responsive {
+	max-width: map-get($container-max-widths, 'xl');
+}

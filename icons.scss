@@ -1,0 +1,175 @@
+@import 'common';
+
+.icon {
+	align-self: center;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.fill-primary {
+	@include lightTheme() {
+		fill: $black;
+	}
+	@include darkTheme() {
+		fill: $white;
+	}
+}
+
+.stroke-primary {
+	@include lightTheme() {
+		stroke: $black;
+	}
+	@include darkTheme() {
+		stroke: $white;
+	}
+}
+
+@each $size, $value in $icon-sizes {
+	.icon-#{$size} {
+		line-height: $value * 1px;
+		height: $value * 1px;
+		width: $value * 1px;
+		> svg {
+			display: block;
+			width: $value * 1px;
+			height: $value * 1px;
+		}
+	}
+}
+
+@each $color, $value in $alert-colors-dark {
+	.icon-#{$color} {
+		@include lightTheme {
+			.fill-primary {
+				fill: $value !important;
+			}
+			.stroke-primary {
+				stroke: $value !important;
+			}
+		}
+	}
+}
+
+@each $color, $value in $alert-colors {
+	.icon-#{$color} {
+		@include darkTheme {
+			.fill-primary {
+				fill: $value !important;
+			}
+			.stroke-primary {
+				stroke: $value !important;
+			}
+		}
+	}
+}
+
+.icon-muted {
+	.fill-primary {
+		@include lightTheme {
+			fill: $text-muted !important;
+		}
+		@include darkTheme {
+			fill: $text-muted-inverted !important;
+		}
+	}
+	.stroke-primary {
+		@include lightTheme {
+			stroke: $text-muted !important;
+		}
+		@include darkTheme {
+			stroke: $text-muted-inverted !important;
+		}
+	}
+}
+
+.icon-normal {
+	.fill-primary {
+		@include lightTheme {
+			fill: $body-color !important;
+		}
+		@include darkTheme {
+			fill: $body-color-inverted !important;
+		}
+	}
+	.stroke-primary {
+		@include lightTheme {
+			stroke: $body-color !important;
+		}
+		@include darkTheme {
+			stroke: $body-color-inverted !important;
+		}
+	}
+}
+
+.icon-strong {
+	.fill-primary {
+		@include lightTheme {
+			fill: $headings-color !important;
+		}
+		@include darkTheme {
+			fill: $headings-color-inverted !important;
+		}
+	}
+	.stroke-primary {
+		@include lightTheme {
+			stroke: $headings-color !important;
+		}
+		@include darkTheme {
+			stroke: $headings-color-inverted !important;
+		}
+	}
+}
+
+.icon-white-muted {
+	.fill-primary {
+		fill: $text-muted-inverted !important;
+	}
+	.stroke-primary {
+		stroke: $text-muted-inverted !important;
+	}
+}
+
+.icon-white-normal {
+	.fill-primary {
+		fill: $body-color-inverted !important;
+	}
+	.stroke-primary {
+		stroke: $body-color-inverted !important;
+	}
+}
+
+.icon-white-strong {
+	.fill-primary {
+		fill: $headings-color-inverted !important;
+	}
+	.stroke-primary {
+		stroke: $headings-color-inverted !important;
+	}
+}
+
+.icon-black-muted {
+	.fill-primary {
+		fill: $text-muted !important;
+	}
+	.stroke-primary {
+		stroke: $text-muted !important;
+	}
+}
+
+.icon-black-normal {
+	.fill-primary {
+		fill: $body-color !important;
+	}
+	.stroke-primary {
+		stroke: $body-color !important;
+	}
+}
+
+.icon-black-strong {
+	.fill-primary {
+		fill: $headings-color !important;
+	}
+	.stroke-primary {
+		stroke: $headings-color !important;
+	}
+}

@@ -1,0 +1,54 @@
+@import 'settings/colors';
+@import 'settings/type';
+@import 'settings/transition';
+@import 'settings/bootstrap';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+// this needs to be here, bacause boostrap variables is doing map-merge
+$theme-colors: ();
+$spacers: (
+	0: 0,
+	'4p': $spacer * 0.25,
+	'8p': $spacer * 0.5,
+	'12p': $spacer * 0.75,
+	'16p': $spacer,
+	'20p': $spacer * 1.25,
+	'24p': $spacer * 1.5,
+	'32p': $spacer * 2,
+	'40p': $spacer * 2.5,
+	'48p': $spacer * 3,
+	'56p': $spacer * 3.5,
+	'64p': $spacer * 4,
+	'80p': $spacer * 5,
+	'104p': $spacer * 6.5,
+);
+$colors: (
+	dark-blue: $dark-blue,
+	dark-green: $dark-green,
+	midnight-blue: $midnight-blue,
+	brown: $brown,
+	light-blue: $light-blue,
+	light-green: $light-green,
+	orange: $orange,
+	red: $red,
+	black-strong: $black-strong,
+	black-normal: $black-normal,
+	black-muted: $black-muted,
+	white-strong: $white-strong,
+	white-normal: $white-normal,
+	white-muted: $white-muted,
+);
+
+@import 'settings/alerts';
+@import 'settings/badge';
+@import 'settings/card';
+@import 'settings/forms';
+@import 'settings/icons';
+@import 'settings/overlay';
+@import 'settings/scrims';
+@import 'settings/shadows';
+@import 'settings/tables';
+@import 'settings/nav';
+
+@import 'tools/tools';

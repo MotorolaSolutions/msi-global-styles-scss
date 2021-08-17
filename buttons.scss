@@ -1,0 +1,349 @@
+@import 'common';
+$theme-colors: ();
+@import 'bootstrap/scss/buttons';
+
+// stylelint-disable no-descending-specificity
+.btn {
+	@include input-focus-selector();
+	@include tap-area-selector();
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: uppercase;
+	letter-spacing: remsize(1.2);
+	padding: #{$btn-padding-y + 1px} $btn-padding-x #{$btn-padding-y - 1px};
+}
+
+.btn .fill-primary {
+	transition: fill $transition-duration-fast ease-in-out;
+}
+
+.btn .stroke-primary {
+	transition: stroke $transition-duration-fast ease-in-out;
+}
+
+.btn > .icon-prepend {
+	position: relative;
+	left: -4px;
+}
+
+.btn-lg > .icon-prepend {
+	left: -8px;
+}
+
+.btn > .icon-append {
+	position: relative;
+	right: -4px;
+}
+
+.btn-lg > .icon-append {
+	right: -8px;
+}
+
+.btn-sm {
+	letter-spacing: remsize(1.11);
+	padding: $btn-padding-y-sm $btn-padding-x-sm;
+}
+
+.btn-lg {
+	letter-spacing: remsize(1.29);
+	padding: $btn-padding-y-lg $btn-padding-x-lg;
+}
+
+.btn-link {
+	padding: map-get($spacers, '8p');
+	border-radius: 0;
+	font-size: remsize(16);
+	text-transform: none;
+	letter-spacing: 0;
+
+	.btn-group-sm &,
+	&.btn-sm {
+		font-size: remsize(14);
+		letter-spacing: remsize(0.2);
+	}
+
+	.btn-group-lg &,
+	&.btn-lg {
+		font-size: remsize(19);
+		letter-spacing: 0;
+	}
+
+	@include lightTheme {
+		color: $link-color;
+
+		.fill-primary {
+			fill: $link-color;
+		}
+		.stroke-primary {
+			stroke: $link-color;
+		}
+	}
+
+	@include darkTheme {
+		color: $link-color-inverted;
+
+		.fill-primary {
+			fill: $link-color-inverted;
+		}
+		.stroke-primary {
+			stroke: $link-color-inverted;
+		}
+	}
+
+	> .link-text {
+		@extend %link-underline;
+		line-height: 1.4;
+		align-self: center;
+	}
+
+	&:hover > .link-text,
+	&:focus > .link-text {
+		@extend %link-underline-hover;
+	}
+}
+
+.btn-primary {
+	@include lightTheme {
+		@include button-variant($black-95, $white-95);
+		@include button-hover-variant($black-95, $white-95, $white-25);
+		@include button-active-variant($black-95, $white-95);
+		@include button-disabled-variant($light-black, $white-25);
+	}
+
+	@include darkTheme {
+		@include button-variant($white-95, $black-95);
+		@include button-hover-variant($white-95, $black-95, $black-25);
+		@include button-active-variant($white-95, $black-95);
+		@include button-disabled-variant($light-black, $white-25);
+	}
+}
+
+.btn.btn-secondary {
+	// need to raise specifity beacuse of .btn:not(.btn-sorting) styles
+
+	@include lightTheme {
+		@include button-variant(transparent, $black-95, $black-40);
+		@include button-hover-variant($black-95, $white-95);
+		@include button-active-variant($black-95, $white-95, $white-25);
+		@include button-disabled-variant(transparent, $black-25, $light-black);
+	}
+
+	@include darkTheme {
+		@include button-variant(transparent, $white-95, $white-40);
+		@include button-hover-variant($white-95, $black-95);
+		@include button-active-variant($white-95, $black-95, $black-25);
+		@include button-disabled-variant(transparent, $white-25, $light-black);
+	}
+}
+
+.btn-tertiary {
+	@include button-variant($dark-gray, $black-95);
+	@include button-hover-variant($dark-gray, $black-95, $black-25);
+	@include button-active-variant($dark-gray, $black-95);
+	@include button-disabled-variant($light-black, $white-25);
+}
+
+.btn-round {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+
+	> svg {
+		position: static;
+		margin: 0;
+		width: 62.5%;
+		height: 62.5%;
+	}
+
+	&.btn-sm {
+		width: 50px;
+		height: 50px;
+	}
+
+	&.btn-lg {
+		width: 80px;
+		height: 80px;
+	}
+}
+
+.btn-row {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-right: map-get($spacers, '8p') * -1;
+	margin-left: map-get($spacers, '8p') * -1;
+	margin-bottom: map-get($spacers, '8p') * -1;
+
+	.btn {
+		margin-right: map-get($spacers, '8p');
+		margin-left: map-get($spacers, '8p');
+		margin-bottom: map-get($spacers, '8p');
+	}
+}
+
+.back-to-top {
+	display: flex;
+	width: unset;
+	padding: 3px;
+	text-transform: capitalize;
+	position: fixed;
+	flex-direction: column;
+	border-radius: $popover-border-radius;
+	bottom: map-get($spacers, '16p');
+	right: map-get($spacers, '16p');
+}
+
+.btn-sorting {
+	position: relative;
+	padding: 0 24px 0 0;
+	border: 1px solid transparent;
+	border-radius: 0;
+	color: inherit;
+	text-transform: inherit;
+	@include responsiveFont($type-p-sm, false);
+
+	&:hover {
+		@include lightTheme {
+			color: $black-strong;
+		}
+		@include darkTheme {
+			color: $white-strong;
+		}
+	}
+
+	&:after {
+		position: absolute;
+		width: 8px;
+		height: 13px;
+		right: 8px;
+		bottom: 6px;
+
+		@include lightTheme {
+			@include sorting-button-content($black-25);
+		}
+		@include darkTheme {
+			@include sorting-button-content($white-25);
+		}
+	}
+
+	&.asc {
+		&:after {
+			@include lightTheme {
+				@include sorting-button-content($black-25, $headings-color, 'up');
+			}
+			@include darkTheme {
+				@include sorting-button-content($white-25, $headings-color-inverted, 'up');
+			}
+		}
+	}
+
+	&.desc {
+		&:after {
+			@include lightTheme {
+				@include sorting-button-content($black-25, $headings-color, 'down');
+			}
+			@include darkTheme {
+				@include sorting-button-content($white-25, $headings-color-inverted, 'down');
+			}
+		}
+	}
+}
+
+.btn.icon {
+	display: inline-block;
+	padding: 0;
+	border-radius: 0;
+	opacity: 0.6;
+
+	> svg {
+		position: relative;
+		left: $input-btn-border-width * -1;
+		margin-right: $input-btn-border-width * -1;
+		top: $input-btn-border-width * -1;
+		margin-bottom: $input-btn-border-width * -1;
+	}
+
+	&:not(:disabled):not(.disabled):hover {
+		opacity: 0.95;
+	}
+
+	/* stylelint-disable */
+	@at-root body.user-is-tabbing &:focus,
+	&.focus {
+		box-shadow: none;
+		border-color: transparent;
+	}
+
+	@at-root body.user-is-tabbing &:focus,
+	&.focus {
+		&:before {
+			@include input-focus(false);
+		}
+	}
+}
+
+.btn-toggle {
+	border-radius: 0;
+	padding: 0 map-get($spacers, '4p') 0 0;
+	@include lightTheme {
+		color: $black-60;
+	}
+	@include darkTheme {
+		color: $white-60;
+	}
+
+	&:hover {
+		@include lightTheme {
+			background-color: $secondary;
+		}
+		@include darkTheme {
+			background-color: $background-black;
+		}
+	}
+
+	&:focus,
+	&:hover {
+		@include lightTheme {
+			color: $black-95;
+		}
+		@include darkTheme {
+			color: $white-95;
+		}
+
+		.fill-primary {
+			@include lightTheme {
+				fill: $black-95;
+			}
+			@include darkTheme {
+				fill: $white-95;
+			}
+		}
+	}
+
+	.fill-primary {
+		@include lightTheme {
+			fill: $black-60;
+		}
+		@include darkTheme {
+			fill: $white-60;
+		}
+	}
+
+	> .icon {
+		transition: transform $transition-duration-fast;
+	}
+
+	&:not(.opened) {
+		> .icon {
+			transform: rotate(180deg);
+		}
+	}
+}
+
+// stylelint-enable

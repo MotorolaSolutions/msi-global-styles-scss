@@ -1,0 +1,24 @@
+@mixin tap-area($pseudo-element: ':before', $with-content: true) {
+	&:#{$pseudo-element} {
+		@if ($with-content) {
+			content: '';
+		}
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		height: 48px;
+		width: m#{a}x(100%, 48px);
+		transform: translate(-50%, -50%);
+	}
+}
+
+@mixin tap-area-selector($at-root: true, $pseudo-element: ':before') {
+	@if $at-root {
+		@include tap-area($pseudo-element, false);
+		@at-root body.user-is-touching &:#{$pseudo-element} {
+			content: '';
+		}
+	} @else {
+		@include tap-area($pseudo-element);
+	}
+}

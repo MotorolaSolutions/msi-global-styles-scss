@@ -1,0 +1,32 @@
+@import 'common';
+@import 'bootstrap/scss/popover';
+
+.popover {
+	box-shadow: map-get(map-get($shadows, 'lg'), 'light'), $popover-shadow-secondary;
+	background-color: $white;
+
+	@include media-breakpoint-down(xs) {
+		max-width: $popover-max-width-xs;
+	}
+}
+
+$directions: top bottom, right left, bottom top, left right;
+
+@each $direction, $opposite-direction in $directions {
+	.bs-popover-#{$direction} {
+		margin-#{$opposite-direction}: 12px;
+		> .arrow::after {
+			border-#{$direction}-color: $white;
+		}
+	}
+}
+
+.popover-header {
+	padding-bottom: 0;
+	font-weight: $font-weight-bold;
+	margin-bottom: map-get($spacers, '8p');
+
+	&:not(:empty) + .popover-body {
+		padding-top: 0;
+	}
+}
